@@ -22,7 +22,8 @@ This project is built using modern and robust technologies to ensure a fast, sca
   * **Group Management:** The coordinator can view a list of all participants in their group.
   * **State-Based Workflow:** A clear visual representation of each participant's page status (`Not Started`, `In Progress`, `Submitted for Review`, `Changes Requested`, `Ready for Approval`).
   * **Page Review:** The coordinator can review a submitted page and either approve it or request changes with comments.
-  * **Cover Editor:** A dedicated interface for designing the yearbook's cover.
+  * **Cover Editor:** A group-specific interface for designing each yearbook's cover with live preview, text customization, and templates.
+  * **Settings Management:** Modular settings with personal information, security, and notification preferences.
   * **PDF Generation:** A button to trigger the final PDF compilation and download the file once all pages are approved.
 
 ### **Participant Editor**
@@ -66,24 +67,72 @@ This project is built using modern and robust technologies to ensure a fast, sca
 
 ```
 /frontend
-|-- /app                   # Next.js app router pages
-|   |-- /coordinator       # Coordinator dashboard routes
-|   |-- /participant       # Participant editor routes
-|   |-- /api               # Next.js API routes (if any)
-|-- /components            # Reusable React components
-|   |-- /ui                # Shadcn UI components
-|   |-- /editor            # Custom Editor.js blocks and editor component
-|   |-- /forms             # Form components using React Hook Form
-|-- /lib                   # Utility functions and React Query setup
-|   |-- /hooks             # Custom hooks
-|   |-- /utils.ts          # General utilities
-|   |-- /queryClient.ts    # React Query client setup
-|-- /styles                # Tailwind CSS configuration
-|-- /types                 # TypeScript type definitions
-|-- next.config.js
+|-- /app                          # Next.js App Router pages
+|   |-- /coordinator              # Coordinator dashboard routes
+|   |   |-- /groups               # Group management
+|   |   |   |-- /[groupId]        # Dynamic group routes
+|   |   |   |   |-- /cover-editor # Group-specific cover editor
+|   |   |   |   |-- /settings     # Group settings
+|   |   |   |   |-- page.tsx      # Group details
+|   |   |   |-- /new              # Create new group
+|   |   |   |-- page.tsx          # Groups listing
+|   |   |-- /reports              # Reports and analytics
+|   |   |-- /settings             # Coordinator settings
+|   |   |-- page.tsx              # Dashboard
+|   |-- /participant              # Participant editor routes
+|   |   |-- /[token]              # Dynamic participant routes
+|   |   |-- page.tsx              # Participant landing
+|   |-- layout.tsx               # Root layout
+|   |-- page.tsx                 # Homepage
+|-- /components                   # Reusable React components
+|   |-- index.ts                 # Barrel exports for single-line imports
+|   |-- /ui                      # Shadcn UI components
+|   |-- /layout                  # Layout-specific components
+|   |-- /forms                   # Form components with validation
+|   |   |-- create-group-form.tsx
+|   |   |-- personal-info-form.tsx
+|   |   |-- security-settings-form.tsx
+|   |   |-- notification-settings-form.tsx
+|   |-- /editor                  # Editor.js related components
+|   |-- /shared                  # Shared business components
+|   |-- providers.tsx            # React Query provider
+|-- /lib                         # Utilities and configuration
+|   |-- /hooks                   # TanStack Query custom hooks
+|   |-- /services                # API service classes
+|   |-- /validations             # Zod validation schemas
+|   |-- utils.ts                 # Utility functions
+|   |-- queryClient.ts           # React Query client setup
+|-- /types                       # TypeScript type definitions
+|-- /mock                        # Mock data and API for development
+|   |-- /data                    # Mock data files
+|   |-- /api                     # Mock API implementations
+|-- /docs                        # Project documentation
+|   |-- development-guidelines.md
+|   |-- tech-stack.md
+|   |-- recent-changes-december-2024.md
+|-- next.config.mjs
 |-- tsconfig.json
 |-- package.json
 |-- README.md
 ```
+
+## **5. Recent Updates (December 2024)**
+
+### **Cover Editor Improvements**
+- Moved from global navigation to group-specific context
+- Added cover editor buttons on group cards and detail pages
+- Enhanced with live preview, text positioning, and template system
+
+### **Settings Modernization**
+- Split monolithic settings into modular form components
+- Added comprehensive validation with Zod schemas
+- Improved user experience with better layout and organization
+
+### **Architecture Enhancements**
+- Resolved circular dependency issues
+- Established clear import patterns
+- Updated documentation and development guidelines
+
+For detailed information about recent changes, see `/docs/recent-changes-december-2024.md`
 
 This structured `README.md` clearly defines the project's purpose, technology stack, features, and how to get started. It serves as an excellent starting point for any developer joining the project.
