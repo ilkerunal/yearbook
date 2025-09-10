@@ -1,2 +1,0 @@
-# yearbook
-A yearbook application
