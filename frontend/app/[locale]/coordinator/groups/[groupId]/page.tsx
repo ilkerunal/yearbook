@@ -1,14 +1,15 @@
 "use client"
 
+import { useLocale, useTranslations } from 'next-intl'
 import { CoordinatorLayout } from "@/components/layout/coordinator-layout"
 import { PageWrapper } from "@/components/layout/page-wrapper"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { mockGroups } from "@/mock"
-import { 
+import {
   ArrowLeft,
-  Users, 
+  Users,
   Plus,
   Eye,
   MessageSquare,
@@ -26,6 +27,7 @@ import { PageStatus } from "@/types"
 interface GroupPageProps {
   params: {
     groupId: string
+    locale: string
   }
 }
 
@@ -64,6 +66,9 @@ function getStatusIcon(status: PageStatus) {
 }
 
 export default function GroupPage({ params }: GroupPageProps) {
+  const locale = useLocale()
+  const t = useTranslations('coordinator.groups')
+  const tDetails = useTranslations('coordinator.groupDetails')
   const group = mockGroups.find(g => g.id === params.groupId)
 
   if (!group) {
@@ -71,10 +76,10 @@ export default function GroupPage({ params }: GroupPageProps) {
       <CoordinatorLayout>
         <PageWrapper>
           <div className="text-center py-12">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Group Not Found</h1>
-            <p className="text-gray-600 mb-6">The group you&apos;re looking for doesn&apos;t exist.</p>
-            <Link href="/coordinator">
-              <Button>Back to Dashboard</Button>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('groupNotFound')}</h1>
+            <p className="text-gray-600 mb-6">{t('groupNotFoundDescription')}</p>
+            <Link href={`/${locale}/coordinator`}>
+              <Button>{t('backToDashboard')}</Button>
             </Link>
           </div>
         </PageWrapper>

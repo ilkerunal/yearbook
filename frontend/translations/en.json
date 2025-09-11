@@ -1,0 +1,547 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "submit": "Submit",
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "close": "Close",
+      "confirm": "Confirm",
+      "viewDetails": "View Details",
+      "settings": "Settings",
+      "download": "Download",
+      "upload": "Upload",
+      "search": "Search",
+      "filter": "Filter",
+      "sort": "Sort",
+      "reset": "Reset",
+      "preview": "Preview"
+    },
+    "states": {
+      "loading": "Loading...",
+      "saving": "Saving...",
+      "deleting": "Deleting...",
+      "updating": "Updating...",
+      "submitting": "Submitting...",
+      "creating": "Creating...",
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning",
+      "completed": "Completed",
+      "pending": "Pending",
+      "inProgress": "In Progress",
+      "notStarted": "Not Started"
+    },
+    "time": {
+      "created": "Created",
+      "updated": "Updated",
+      "lastUpdated": "Last updated",
+      "memberSince": "Member since"
+    },
+    "fields": {
+      "name": "Name",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "school": "School",
+      "organization": "Organization",
+      "role": "Role",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "enterFullName": "Enter your full name",
+      "enterEmail": "Enter your email address",
+      "enterPhone": "Enter your phone number",
+      "enterSchool": "Enter your school or organization",
+      "enterRole": "Enter your role or title",
+      "enterCurrentPassword": "Enter your current password",
+      "enterNewPassword": "Enter your new password",
+      "confirmNewPassword": "Confirm your new password"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordRequirements": "Password must contain uppercase, lowercase, number and special character"
+    }
+  },
+  "brand": "Digital Yearbook",
+  "navigation": {
+    "home": "Home",
+    "coordinator": {
+      "dashboard": "Coordinator Dashboard",
+      "groups": "Groups",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "participant": {
+      "title": "Participant",
+      "dashboard": "Dashboard",
+      "editor": "Editor"
+    }
+  },
+  "forms": {
+    "labels": {
+      "name": "Name",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "school": "School",
+      "role": "Role",
+      "password": "Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "coverTitle": "Cover Title",
+      "groupName": "Group Name",
+      "participants": "Participants"
+    },
+    "placeholders": {
+      "enterName": "Enter your name...",
+      "enterEmail": "Enter your email address...",
+      "enterPhone": "Enter your phone number...",
+      "searchGroups": "Search groups...",
+      "enterTitle": "Enter title...",
+      "enterPassword": "Enter your password...",
+      "enterGroupName": "Enter group name...",
+      "enterCurrentPassword": "Enter current password...",
+      "enterNewPassword": "Enter new password...",
+      "confirmNewPassword": "Confirm new password..."
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "minLength": "Must be at least {min} characters",
+      "maxLength": "Must be less than {max} characters",
+      "passwordMismatch": "Passwords don't match",
+      "invalidPhone": "Please enter a valid phone number",
+      "passwordRequirements": "Password must contain uppercase, lowercase, number and special character"
+    }
+  },
+  "coordinator": {
+    "dashboard": {
+      "title": "Coordinator Dashboard",
+      "description": "Manage your yearbook projects",
+      "createNewGroup": "Create New Group",
+      "stats": {
+        "totalGroups": "Total Groups",
+        "totalParticipants": "Total Participants",
+        "pendingReview": "Pending Review",
+        "completed": "Completed",
+        "activeProjects": "active projects",
+        "acrossAllGroups": "across all groups",
+        "pagesAwaitingReview": "pages awaiting review",
+        "readyForFinalPdf": "ready for PDF"
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "description": "Latest actions in your system",
+        "newSubmission": "New Submission",
+        "updated": "Updated",
+        "actionNeeded": "Action Needed"
+      },
+      "groups": {
+        "title": "Groups",
+        "viewAllGroups": "View All Groups",
+        "participants": "participants",
+        "created": "Created",
+        "generatePdf": "Generate PDF",
+        "manage": "Manage",
+        "progress": "Progress",
+        "completed": "Completed",
+        "pendingReview": "Pending Review",
+        "inProgress": "In Progress",
+        "notStarted": "Not Started"
+      }
+    },
+    "groups": {
+      "title": "Group Management",
+      "description": "Create and manage your yearbook groups",
+      "createNewGroup": "Create New Group",
+      "searchPlaceholder": "Search groups...",
+      "filterByDate": "Filter by Date",
+      "filterByStatus": "Filter by Status",
+      "complete": "complete",
+      "participants": "participants",
+      "created": "Created",
+      "progress": "Progress",
+      "completed": "Completed",
+      "pendingReview": "Pending Review",
+      "inProgress": "In Progress",
+      "notStarted": "Not Started",
+      "lastUpdated": "Last updated",
+      "viewDetails": "View Details",
+      "editCover": "Edit Cover",
+      "groupSettings": "Group Settings",
+      "downloadPdf": "Download PDF",
+      "readyForPdf": "Ready for PDF",
+      "noGroups": "No groups yet",
+      "noGroupsDescription": "Get started by creating your first yearbook group",
+      "status": {
+        "active": "Active",
+        "draft": "Draft",
+        "completed": "Completed"
+      }
+    },
+    "forms": {
+      "createGroup": {
+        "title": "Create New Group",
+        "basicInfo": {
+          "title": "Basic Information",
+          "description": "General details about your yearbook group"
+        },
+        "fields": {
+          "groupName": "Group Name",
+          "groupNameRequired": "Group Name *",
+          "description": "Description",
+          "year": "Graduation Year",
+          "school": "School",
+          "class": "Class",
+          "coordinator": "Coordinator",
+          "coverTitle": "Cover Title",
+          "coverImage": "Cover Image",
+          "name": "Name",
+          "email": "Email"
+        },
+        "placeholders": {
+          "groupName": "e.g., Westfield High School - Class of 2024",
+          "coverTitle": "e.g., Forever Eagles - Class of 2024",
+          "fullName": "Full name",
+          "email": "email@example.com",
+          "description": "Brief description about the group",
+          "school": "School name",
+          "class": "Class name"
+        },
+        "coverDesign": {
+          "title": "Cover Design (Optional)",
+          "description": "Set up the initial cover design for your yearbook",
+          "uploadText": "Drop your cover image here, or click to browse",
+          "fileInfo": "PNG, JPG up to 10MB (recommended: 1200x800px)",
+          "chooseFile": "Choose File",
+          "removeImage": "Remove Image"
+        },
+        "participants": {
+          "title": "Add Participants",
+          "description": "Add the people who will create pages in this yearbook",
+          "addAnother": "Add Another Participant",
+          "note": "Each participant will receive a unique access link to create their yearbook page. You can always add more participants later."
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "saveAsDraft": "Save as Draft",
+          "createGroup": "Create Group",
+          "creating": "Creating..."
+        },
+        "validation": {
+          "groupNameRequired": "Group name is required",
+          "yearRequired": "Graduation year is required",
+          "schoolRequired": "School name is required"
+        }
+      }
+    },
+    "coverEditor": {
+      "title": "Cover Editor",
+      "groupNotFound": "Group Not Found",
+      "backToGroups": "Back to Groups",
+      "backToGroup": "Back to Group",
+      "reset": "Reset",
+      "preview": "Preview",
+      "saveCover": "Save Cover",
+      "saving": "Saving...",
+      "coverPreview": "Cover Preview",
+      "coverPreviewDesc": "See how your yearbook cover will look",
+      "uploadBackgroundImage": "Upload a background image",
+      "changeBackground": "Change Background",
+      "downloadPreview": "Download Preview",
+      "titleSettings": "Title Settings",
+      "coverTitle": "Cover Title",
+      "enterTitle": "Enter yearbook title...",
+      "fontSize": "Font Size",
+      "textColor": "Text Color",
+      "textPosition": "Text Position",
+      "horizontalPosition": "Horizontal Position",
+      "verticalPosition": "Vertical Position",
+      "positions": {
+        "topLeft": "Top Left",
+        "topCenter": "Top Center",
+        "topRight": "Top Right",
+        "left": "Left",
+        "center": "Center",
+        "right": "Right",
+        "bottomLeft": "Bottom Left",
+        "bottomCenter": "Bottom Center",
+        "bottomRight": "Bottom Right"
+      },
+      "background": "Background",
+      "currentBackground": "Current Background",
+      "uploadNewBackground": "Upload New Background",
+      "imageRecommendation": "Recommended: 1200x1600px (3:4 ratio) for best print quality",
+      "quickTemplates": "Quick Templates",
+      "templates": {
+        "classic": "Classic",
+        "modern": "Modern",
+        "bold": "Bold",
+        "elegant": "Elegant"
+      }
+    },
+    "groupDetails": {
+      "title": "Group Details",
+      "backToGroup": "Back to Group",
+      "groupSettings": "Group Settings",
+      "basicInformation": "Basic Information",
+      "updateGroupInfo": "Update your group name and description",
+      "groupName": "Group Name",
+      "saveChanges": "Save Changes",
+      "participantManagement": "Participant Management",
+      "participantManagementDesc": "Manage who can access and contribute to this yearbook",
+      "currentParticipants": "Current Participants",
+      "totalParticipants": "total participants",
+      "addParticipants": "Add Participants",
+      "copyLink": "Copy Link",
+      "remove": "Remove",
+      "coverDesign": "Cover Design",
+      "coverDesignDesc": "Configure the yearbook cover appearance",
+      "coverTitle": "Cover Title",
+      "currentCoverImage": "Current Cover Image",
+      "editCoverDesign": "Edit Cover Design",
+      "saveCoverSettings": "Save Cover Settings",
+      "pdfGeneration": "PDF Generation",
+      "pdfGenerationDesc": "Configure how the final yearbook PDF is generated",
+      "generationStatus": "Generation Status",
+      "pagesReadyForPdf": "pages are ready for PDF generation",
+      "of": "of",
+      "generatePdfNow": "Generate PDF Now",
+      "downloadPreviousPdf": "Download Previous PDF",
+      "dangerZone": "Danger Zone",
+      "irreversibleActions": "Irreversible actions for this group",
+      "deleteGroup": "Delete Group",
+      "deleteGroupDesc": "Permanently delete this group and all associated data",
+      "overview": "Overview",
+      "participants": "Participants",
+      "participantsDescription": "Manage participant pages and review submissions",
+      "filterByStatus": "Filter by Status",
+      "groupStats": "Group Statistics",
+      "completedPages": "Completed Pages",
+      "pendingReviews": "Pending Reviews",
+      "inProgressPages": "In Progress Pages",
+      "notStartedPages": "Not Started Pages",
+      "recentActivity": "Recent Activity",
+      "viewPage": "View Page",
+      "sendMessage": "Send Message",
+      "approvePage": "Approve Page",
+      "requestChanges": "Request Changes",
+      "pageStatus": {
+        "notStarted": "Not Started",
+        "inProgress": "In Progress",
+        "submittedForReview": "Submitted for Review",
+        "changesRequested": "Changes Requested",
+        "readyForApproval": "Ready for Approval"
+      },
+      "actions": {
+        "generatePdf": "Generate PDF",
+        "editCover": "Edit Cover",
+        "groupSettings": "Group Settings",
+        "addParticipant": "Add Participant"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Manage your account preferences and notification settings",
+      "personalInformation": "Personal Information",
+      "personalInfoDescription": "Update your basic information and contact details",
+      "securitySettings": "Security Settings",
+      "securityDescription": "Change your password to keep your account secure",
+      "notificationPreferences": "Notification Preferences",
+      "notificationDescription": "Choose how you want to be notified about yearbook activities",
+      "saveChanges": "Save Changes",
+      "updatePassword": "Update Password",
+      "savePreferences": "Save Preferences",
+      "accountOverview": "Account Overview",
+      "premiumAccount": "Premium Account",
+      "groupsCreated": "Groups created",
+      "totalParticipants": "Total participants",
+      "quickActions": "Quick Actions",
+      "exportData": "Export Data",
+      "twoFactorAuth": "Two-Factor Auth",
+      "customizeTheme": "Customize Theme",
+      "needHelp": "Need Help?",
+      "helpDescription": "Have questions about using the platform? Our support team is here to help.",
+      "contactSupport": "Contact Support",
+      "notifications": {
+        "emailSubmissions": "New Page Submissions",
+        "emailSubmissionsDesc": "Get notified when participants submit new pages",
+        "emailApprovals": "Page Approvals",
+        "emailApprovalsDesc": "Get notified when pages are approved or need changes",
+        "emailReminders": "Deadline Reminders",
+        "emailRemindersDesc": "Get reminders about upcoming deadlines",
+        "pushNotifications": "Browser Notifications",
+        "pushNotificationsDesc": "Receive instant notifications in your browser",
+        "weeklyReports": "Weekly Reports",
+        "weeklyReportsDesc": "Receive weekly progress summaries",
+        "note": "Note: You can always change these settings later. Email notifications help you stay on top of your yearbook's progress."
+      },
+      "securityTip": "Security tip: Use a strong password with at least 8 characters, including uppercase and lowercase letters, numbers, and special characters."
+    },
+    "reports": {
+      "title": "Reports & Analytics",
+      "description": "Overview of all yearbook projects and progress",
+      "dateRange": "Date Range",
+      "exportReport": "Export Report",
+      "totalGroups": "Total Groups",
+      "activeProjects": "Active yearbook projects",
+      "totalParticipants": "Total Participants",
+      "acrossAllGroups": "Across all groups",
+      "completionRate": "Completion Rate",
+      "ofComplete": "of complete",
+      "pendingReviewLabel": "Pending Review",
+      "awaitingReview": "Awaiting review",
+      "groupProgressOverview": "Group Progress Overview",
+      "completionStatusAllGroups": "Completion status across all groups",
+      "completedLabel": "completed",
+      "totalLabel": "total",
+      "recentActivity": "Recent Activity",
+      "latestUpdates": "Latest updates across all projects",
+      "pagesApprovedToday": "pages approved today",
+      "acrossDifferentGroups": "across different groups",
+      "hoursAgo": "hours ago",
+      "newGroupCreated": "New group created",
+      "dayAgo": "day ago",
+      "pagesSubmittedReview": "pages submitted for review",
+      "daysAgo": "days ago",
+      "pdfGeneratedSuccessfully": "PDF generated successfully",
+      "groupAnalysis": "Group Analysis",
+      "detailedBreakdown": "Detailed breakdown of each group's progress",
+      "groupName": "Group Name",
+      "participantsHeader": "Participants",
+      "completedHeader": "Completed",
+      "pendingReviewHeader": "Pending Review",
+      "progressHeader": "Progress",
+      "statusHeader": "Status",
+      "createdLabel": "Created",
+      "readyForPdf": "Ready for PDF",
+      "inProgressStatus": "In Progress"
+    }
+  },
+  "participant": {
+    "title": "Participant",
+    "description": "Create your yearbook page",
+    "accessPortal": "Access Portal",
+    "editor": "Editor",
+    "createYourPage": "Create Your Page",
+    "access": {
+      "title": "Participant Access",
+      "description": "Enter your access link or token to create your yearbook page",
+      "backToHome": "Back to Home",
+      "accessLinkLabel": "Access Link or Token",
+      "accessLinkPlaceholder": "Enter your access link or token...",
+      "accessLinkHelp": "This should have been provided by your coordinator",
+      "accessButton": "Access My Page",
+      "noAccessLink": "Don't have an access link?",
+      "contactCoordinator": "Contact your yearbook coordinator to get your personalized access link.",
+      "tryDemo": "Try the demo:",
+      "viewDemo": "View Demo Participant Page"
+    },
+    "editor": {
+      "welcome": "Welcome",
+      "createYourPage": "Create your personalized yearbook page",
+      "preview": "Preview",
+      "saveDraft": "Save Draft",
+      "submitForReview": "Submit for Review",
+      "pageStatus": "Page Status",
+      "personalBio": "Personal Bio",
+      "addYourBio": "Add Your Bio",
+      "bioDescription": "Tell your story! Share your achievements, interests, and what makes you unique.",
+      "writeYourBio": "Write Your Bio",
+      "favoriteQuote": "Favorite Quote",
+      "addYourQuote": "Add Your Favorite Quote",
+      "quoteDescription": "Share an inspiring quote that represents you or your journey.",
+      "addQuote": "Add Quote",
+      "yourStory": "Your Story",
+      "storyDescription": "Use the editor below to add photos, text, and memories to your yearbook page.",
+      "startBuilding": "Start Building Your Page",
+      "buildingDescription": "Add photos, text blocks, and memories to create your unique yearbook page.",
+      "addPhoto": "Add Photo",
+      "addText": "Add Text",
+      "needHelp": "Need Help?",
+      "gettingStarted": "Getting Started",
+      "gettingStartedDesc": "Begin by writing your bio and adding a favorite quote, then use the editor to add photos and memories.",
+      "photoTips": "Photo Tips",
+      "photoTipsDesc": "Upload high-quality photos (at least 300 DPI) for the best print results.",
+      "reviewProcess": "Review Process",
+      "reviewProcessDesc": "Once submitted, your coordinator will review your page and may request changes before final approval.",
+      "photoGallery": "Photo Gallery",
+      "noPhotosUploaded": "No photos uploaded yet",
+      "uploadPhotos": "Upload Photos",
+      "accessTokenInvalid": "Access Token Invalid",
+      "accessTokenInvalidDesc": "The access link you used is invalid or has expired. Please contact your coordinator for a new link.",
+      "galleryImage": "Gallery image",
+      "pageImage": "Page image"
+    },
+    "statusInfo": {
+      "readyForApproval": "Your page has been approved and is ready for the final yearbook!",
+      "submittedForReview": "Your page is being reviewed by the coordinator. You'll be notified of any changes needed.",
+      "inProgress": "Continue working on your page and submit it when you're ready for review.",
+      "changesRequested": "The coordinator has requested some changes. Please review the feedback and update your page.",
+      "notStarted": "Get started by adding your bio, photos, and memories to create your yearbook page."
+    }
+  },
+  "errors": {
+    "pageNotFound": "Page Not Found",
+    "groupNotFound": "Group Not Found",
+    "backToGroups": "Back to Groups",
+    "backToDashboard": "Back to Dashboard",
+    "somethingWentWrong": "Something went wrong",
+    "tryAgain": "Try Again",
+    "contactSupport": "Contact Support"
+  },
+  "metadata": {
+    "title": "Digital Yearbook Platform",
+    "description": "Transform yearbook creation from a manual, chaotic process into a streamlined, automated, and digital one with added customization and clear progress tracking."
+  },
+  "home": {
+    "chooseRole": "Choose Your Role",
+    "coordinator": {
+      "title": "Coordinator Dashboard",
+      "description": "Manage yearbook projects and coordinate with participants",
+      "features": {
+        "manageGroups": "Create and manage yearbook groups",
+        "reviewPages": "Review and approve participant pages",
+        "designCovers": "Design custom covers",
+        "generatePdf": "Generate final PDF yearbooks"
+      },
+      "button": "Access Coordinator Dashboard"
+    },
+    "participant": {
+      "title": "Participant Editor",
+      "description": "Create your personalized yearbook page",
+      "features": {
+        "designLayout": "Design your personal page layout",
+        "uploadPhotos": "Upload photos and memories",
+        "writeBio": "Write your bio and favorite quotes",
+        "submitReview": "Submit for coordinator review"
+      },
+      "button": "Try Participant Editor"
+    },
+    "features": {
+      "title": "Key Features",
+      "collaborative": {
+        "title": "Collaborative",
+        "description": "Multiple participants can work on their pages simultaneously"
+      },
+      "easyToUse": {
+        "title": "Easy to Use",
+        "description": "Intuitive editors make page creation simple and fun"
+      },
+      "qualityControl": {
+        "title": "Quality Control",
+        "description": "Review and approval system ensures high-quality results"
+      }
+    }
+  }
+}

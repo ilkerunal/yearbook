@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
+import { useLocale, useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,6 +20,8 @@ interface CreateGroupFormProps {
 
 export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
   const router = useRouter()
+  const locale = useLocale()
+  const t = useTranslations('coordinator.forms.createGroup')
   const createGroupMutation = useCreateGroup()
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(null)
 
@@ -55,7 +58,7 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
       if (onSuccess) {
         onSuccess(newGroup.id)
       } else {
-        router.push(`/coordinator/groups/${newGroup.id}`)
+        router.push(`/${locale}/coordinator/groups/${newGroup.id}`)
       }
     } catch (error) {
       console.error("Failed to create group:", error)
@@ -78,18 +81,18 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
       {/* Basic Information */}
       <Card>
         <CardHeader>
-          <CardTitle>Basic Information</CardTitle>
+          <CardTitle>{t('basicInfo.title')}</CardTitle>
           <CardDescription>
-            General details about your yearbook group
+            {t('basicInfo.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name">Group Name *</Label>
+            <Label htmlFor="name">{t('fields.groupNameRequired')}</Label>
             <Input
               id="name"
               {...form.register("name")}
-              placeholder="e.g., Westfield High School - Class of 2024"
+              placeholder={t('placeholders.groupName')}
             />
             {form.formState.errors.name && (
               <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
@@ -101,18 +104,18 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
       {/* Cover Design */}
       <Card>
         <CardHeader>
-          <CardTitle>Cover Design (Optional)</CardTitle>
+          <CardTitle>{t('coverDesign.title')}</CardTitle>
           <CardDescription>
-            Set up the initial cover design for your yearbook
+            {t('coverDesign.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="coverTitle">Cover Title</Label>
+            <Label htmlFor="coverTitle">{t('fields.coverTitle')}</Label>
             <Input
               id="coverTitle"
               {...form.register("coverTitle")}
-              placeholder="e.g., Forever Eagles - Class of 2024"
+              placeholder={t('placeholders.coverTitle')}
             />
             {form.formState.errors.coverTitle && (
               <p className="text-sm text-red-600">{form.formState.errors.coverTitle.message}</p>
@@ -120,7 +123,7 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label>Cover Image</Label>
+            <Label>{t('fields.coverImage')}</Label>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors">
               {coverImagePreview ? (
                 <div className="relative">
@@ -146,13 +149,13 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
                 <div>
                   <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
                   <p className="text-sm text-gray-600 mb-2">
-                    Drop your cover image here, or click to browse
+                    {t('coverDesign.uploadText')}
                   </p>
                   <p className="text-xs text-gray-500">
-                    PNG, JPG up to 10MB (recommended: 1200x800px)
+                    {t('coverDesign.fileInfo')}
                   </p>
                   <Button type="button" variant="outline" className="mt-4" onClick={handleImageUpload}>
-                    Choose File
+                    {t('coverDesign.chooseFile')}
                   </Button>
                 </div>
               )}
@@ -167,20 +170,20 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
       {/* Participants */}
       <Card>
         <CardHeader>
-          <CardTitle>Add Participants</CardTitle>
+          <CardTitle>{t('participants.title')}</CardTitle>
           <CardDescription>
-            Add the people who will create pages in this yearbook
+            {t('participants.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {fields.map((field, index) => (
             <div key={field.id} className="flex gap-4 items-start">
               <div className="flex-1 space-y-2">
-                <Label htmlFor={`participants.${index}.name`}>Name</Label>
+                <Label htmlFor={`participants.${index}.name`}>{t('fields.name')}</Label>
                 <Input
                   id={`participants.${index}.name`}
                   {...form.register(`participants.${index}.name`)}
-                  placeholder="Full name"
+                  placeholder={t('placeholders.fullName')}
                 />
                 {form.formState.errors.participants?.[index]?.name && (
                   <p className="text-sm text-red-600">
@@ -189,12 +192,12 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
                 )}
               </div>
               <div className="flex-1 space-y-2">
-                <Label htmlFor={`participants.${index}.email`}>Email</Label>
+                <Label htmlFor={`participants.${index}.email`}>{t('fields.email')}</Label>
                 <Input
                   id={`participants.${index}.email`}
                   type="email"
                   {...form.register(`participants.${index}.email`)}
-                  placeholder="email@example.com"
+                  placeholder={t('placeholders.email')}
                 />
                 {form.formState.errors.participants?.[index]?.email && (
                   <p className="text-sm text-red-600">
@@ -228,13 +231,12 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
             disabled={fields.length >= 50}
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add Another Participant
+            {t('participants.addAnother')}
           </Button>
 
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Note:</strong> Each participant will receive a unique access link 
-              to create their yearbook page. You can always add more participants later.
+              <strong>Not:</strong> {t('participants.note')}
             </p>
           </div>
         </CardContent>
@@ -247,7 +249,7 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
           variant="outline"
           onClick={onCancel || (() => router.back())}
         >
-          Cancel
+          {t('actions.cancel')}
         </Button>
         <div className="flex gap-3">
           <Button 
@@ -259,7 +261,7 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
             }}
           >
             <Save className="h-4 w-4 mr-2" />
-            Save as Draft
+            {t('actions.saveAsDraft')}
           </Button>
           <Button 
             type="submit"
@@ -268,10 +270,10 @@ export function CreateGroupForm({ onSuccess, onCancel }: CreateGroupFormProps) {
             {createGroupMutation.isPending ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Creating...
+                {t('actions.creating')}
               </>
             ) : (
-              "Create Group"
+              t('actions.createGroup')
             )}
           </Button>
         </div>

@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from 'next-intl'
 import { notificationSettingsSchema, type NotificationSettingsFormData } from "@/lib/validations/settings"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,6 +16,9 @@ interface NotificationSettingsFormProps {
 }
 
 export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = false }: NotificationSettingsFormProps) {
+  const t = useTranslations('coordinator.settings')
+  const common = useTranslations('common')
+  
   const form = useForm<NotificationSettingsFormData>({
     resolver: zodResolver(notificationSettingsSchema),
     defaultValues: {
@@ -38,24 +42,24 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Notification Settings</CardTitle>
+        <CardTitle>{t('notificationPreferences')}</CardTitle>
         <CardDescription>
-          Choose which notifications you&apos;d like to receive
+          {t('notificationDescription')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
           <div className="space-y-4">
-            <h4 className="text-sm font-medium text-gray-900">Email Notifications</h4>
+            <h4 className="text-sm font-medium text-gray-900">Email {t('notificationPreferences')}</h4>
             
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="emailSubmissions" className="text-sm font-normal">
-                    New Page Submissions
+                    {t('notifications.emailSubmissions')}
                   </Label>
                   <p className="text-xs text-gray-500">
-                    Get notified when participants submit new pages
+                    {t('notifications.emailSubmissionsDesc')}
                   </p>
                 </div>
                 <input
@@ -69,10 +73,10 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="emailApprovals" className="text-sm font-normal">
-                    Page Approvals
+                    {t('notifications.emailApprovals')}
                   </Label>
                   <p className="text-xs text-gray-500">
-                    Get notified when pages are approved or need changes
+                    {t('notifications.emailApprovalsDesc')}
                   </p>
                 </div>
                 <input
@@ -86,10 +90,10 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="emailReminders" className="text-sm font-normal">
-                    Deadline Reminders
+                    {t('notifications.emailReminders')}
                   </Label>
                   <p className="text-xs text-gray-500">
-                    Get reminders about upcoming deadlines
+                    {t('notifications.emailRemindersDesc')}
                   </p>
                 </div>
                 <input
@@ -103,10 +107,10 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="weeklyReports" className="text-sm font-normal">
-                    Weekly Reports
+                    {t('notifications.weeklyReports')}
                   </Label>
                   <p className="text-xs text-gray-500">
-                    Receive weekly progress summaries
+                    {t('notifications.weeklyReportsDesc')}
                   </p>
                 </div>
                 <input
@@ -120,15 +124,15 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
           </div>
 
           <div className="border-t pt-4">
-            <h4 className="text-sm font-medium text-gray-900 mb-3">Push Notifications</h4>
+            <h4 className="text-sm font-medium text-gray-900 mb-3">{t('notifications.pushNotifications')}</h4>
             
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="pushNotifications" className="text-sm font-normal">
-                  Browser Notifications
+                  {t('notifications.pushNotifications')}
                 </Label>
                 <p className="text-xs text-gray-500">
-                  Receive instant notifications in your browser
+                  {t('notifications.pushNotificationsDesc')}
                 </p>
               </div>
               <input
@@ -142,8 +146,7 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
 
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Note:</strong> You can always change these settings later. Email notifications
-              help you stay on top of your yearbook&apos;s progress.
+              {t('notifications.note')}
             </p>
           </div>
 
@@ -155,12 +158,12 @@ export function NotificationSettingsForm({ onSubmit, defaultValues, isLoading = 
               {form.formState.isSubmitting || isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Updating...
+                  {common('status.updating')}
                 </>
               ) : (
                 <>
                   <Save className="h-4 w-4 mr-2" />
-                  Save Preferences
+                  {t('savePreferences')}
                 </>
               )}
             </Button>

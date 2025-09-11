@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useLocale, useTranslations } from 'next-intl'
 import { CoordinatorLayout } from "@/components/layout/coordinator-layout"
 import { PageWrapper } from "@/components/layout/page-wrapper"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -25,10 +26,13 @@ import Link from "next/link"
 interface CoverEditorPageProps {
   params: {
     groupId: string
+    locale: string
   }
 }
 
 export default function CoverEditorPage({ params }: CoverEditorPageProps) {
+  const locale = useLocale()
+  const t = useTranslations('coordinator.coverEditor')
   const group = mockGroups.find(g => g.id === params.groupId)
   const updateGroupMutation = useUpdateGroup(params.groupId)
   
@@ -44,9 +48,9 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
       <CoordinatorLayout>
         <PageWrapper>
           <div className="text-center py-12">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Group Not Found</h1>
-            <Link href="/coordinator/groups">
-              <Button>Back to Groups</Button>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('groupNotFound')}</h1>
+            <Link href={`/${locale}/coordinator/groups`}>
+              <Button>{t('backToGroups')}</Button>
             </Link>
           </div>
         </PageWrapper>
@@ -94,15 +98,15 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href={`/coordinator/groups/${group.id}`}>
+              <Link href={`/${locale}/coordinator/groups/${group.id}`}>
                 <Button variant="ghost" size="sm">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Group
+                  {t('backToGroup')}
                 </Button>
               </Link>
               
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Cover Editor</h1>
+                <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
                 <p className="text-gray-600 mt-1">{group.name}</p>
               </div>
             </div>
@@ -110,18 +114,18 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
             <div className="flex gap-3">
               <Button variant="outline" onClick={resetToDefaults}>
                 <RotateCcw className="h-4 w-4 mr-2" />
-                Reset
+                {t('reset')}
               </Button>
               <Button variant="outline">
                 <Eye className="h-4 w-4 mr-2" />
-                Preview
+                {t('preview')}
               </Button>
               <Button 
                 onClick={handleSave}
                 disabled={!hasUnsavedChanges || updateGroupMutation.isPending}
               >
                 <Save className="h-4 w-4 mr-2" />
-                {updateGroupMutation.isPending ? "Saving..." : "Save Cover"}
+                {updateGroupMutation.isPending ? t('saving') : t('saveCover')}
               </Button>
             </div>
           </div>
@@ -131,9 +135,9 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader>
-                  <CardTitle>Cover Preview</CardTitle>
+                  <CardTitle>{t('coverPreview')}</CardTitle>
                   <CardDescription>
-                    See how your yearbook cover will look
+                    {t('coverPreviewDesc')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -149,7 +153,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-400 to-purple-600">
                         <div className="text-white text-center">
                           <ImageIcon className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                          <p className="text-lg opacity-75">Upload a background image</p>
+                          <p className="text-lg opacity-75">{t('uploadBackgroundImage')}</p>
                         </div>
                       </div>
                     )}
@@ -187,11 +191,11 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                   <div className="flex gap-2 mt-4">
                     <Button variant="outline" size="sm" onClick={handleImageUpload}>
                       <Upload className="h-4 w-4 mr-2" />
-                      Change Background
+                      {t('changeBackground')}
                     </Button>
                     <Button variant="outline" size="sm">
                       <Download className="h-4 w-4 mr-2" />
-                      Download Preview
+                      {t('downloadPreview')}
                     </Button>
                   </div>
                 </CardContent>
@@ -205,22 +209,22 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Type className="h-5 w-5" />
-                    Title Settings
+                    {t('titleSettings')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="coverTitle">Cover Title</Label>
+                    <Label htmlFor="coverTitle">{t('coverTitle')}</Label>
                     <Input
                       id="coverTitle"
                       value={coverTitle}
                       onChange={(e) => handleTitleChange(e.target.value)}
-                      placeholder="Enter yearbook title..."
+                      placeholder={t('enterTitle')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="fontSize">Font Size</Label>
+                    <Label htmlFor="fontSize">{t('fontSize')}</Label>
                     <div className="flex items-center gap-2">
                       <Input
                         id="fontSize"
@@ -239,7 +243,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="textColor">Text Color</Label>
+                    <Label htmlFor="textColor">{t('textColor')}</Label>
                     <div className="flex items-center gap-2">
                       <Input
                         id="textColor"
@@ -268,11 +272,11 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
               {/* Position Controls */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Text Position</CardTitle>
+                  <CardTitle>{t('textPosition')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Horizontal Position</Label>
+                    <Label>{t('horizontalPosition')}</Label>
                     <Input
                       type="range"
                       min="10"
@@ -286,7 +290,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                   </div>
 
                   <div className="space-y-2">
-                    <Label>Vertical Position</Label>
+                    <Label>{t('verticalPosition')}</Label>
                     <Input
                       type="range"
                       min="10"
@@ -308,7 +312,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Top Left
+                      {t('positions.topLeft')}
                     </Button>
                     <Button
                       variant="outline"
@@ -318,7 +322,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Top Center
+                      {t('positions.topCenter')}
                     </Button>
                     <Button
                       variant="outline"
@@ -328,7 +332,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Top Right
+                      {t('positions.topRight')}
                     </Button>
                     <Button
                       variant="outline"
@@ -338,7 +342,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Left
+                      {t('positions.left')}
                     </Button>
                     <Button
                       variant="outline"
@@ -348,7 +352,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Center
+                      {t('positions.center')}
                     </Button>
                     <Button
                       variant="outline"
@@ -358,7 +362,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Right
+                      {t('positions.right')}
                     </Button>
                     <Button
                       variant="outline"
@@ -368,7 +372,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Bottom Left
+                      {t('positions.bottomLeft')}
                     </Button>
                     <Button
                       variant="outline"
@@ -378,7 +382,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Bottom Center
+                      {t('positions.bottomCenter')}
                     </Button>
                     <Button
                       variant="outline"
@@ -388,7 +392,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Bottom Right
+                      {t('positions.bottomRight')}
                     </Button>
                   </div>
                 </CardContent>
@@ -399,13 +403,13 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Palette className="h-5 w-5" />
-                    Background
+                    {t('background')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {coverImage && (
                     <div className="space-y-2">
-                      <Label>Current Background</Label>
+                      <Label>{t('currentBackground')}</Label>
                       <img 
                         src={coverImage} 
                         alt="Background preview" 
@@ -420,11 +424,11 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                     onClick={handleImageUpload}
                   >
                     <Upload className="h-4 w-4 mr-2" />
-                    Upload New Background
+                    {t('uploadNewBackground')}
                   </Button>
 
                   <p className="text-xs text-gray-500">
-                    Recommended: 1200x1600px (3:4 ratio) for best print quality
+                    {t('imageRecommendation')}
                   </p>
                 </CardContent>
               </Card>
@@ -432,7 +436,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
               {/* Templates */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Quick Templates</CardTitle>
+                  <CardTitle>{t('quickTemplates')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-2">
@@ -447,7 +451,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Classic
+                      {t('templates.classic')}
                     </Button>
                     <Button
                       variant="outline"
@@ -459,7 +463,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Modern
+                      {t('templates.modern')}
                     </Button>
                     <Button
                       variant="outline"
@@ -471,7 +475,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Bold
+                      {t('templates.bold')}
                     </Button>
                     <Button
                       variant="outline"
@@ -483,7 +487,7 @@ export default function CoverEditorPage({ params }: CoverEditorPageProps) {
                         setHasUnsavedChanges(true)
                       }}
                     >
-                      Elegant
+                      {t('templates.elegant')}
                     </Button>
                   </div>
                 </CardContent>

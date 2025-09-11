@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from 'next-intl'
 import { CoordinatorLayout } from "@/components/layout/coordinator-layout"
 import { PageWrapper } from "@/components/layout/page-wrapper"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -18,6 +19,9 @@ import {
 } from "lucide-react"
 
 export default function CoordinatorSettingsPage() {
+  const t = useTranslations('coordinator.settings')
+  const common = useTranslations('common')
+  
   // Mock coordinator data
   const [profile] = useState({
     name: "Jennifer Adams",
@@ -51,9 +55,9 @@ export default function CoordinatorSettingsPage() {
         <div className="space-y-8">
           {/* Header */}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
             <p className="text-gray-600 mt-1">
-              Manage your account preferences and notification settings
+              {t('description')}
             </p>
           </div>
 
@@ -89,7 +93,7 @@ export default function CoordinatorSettingsPage() {
               {/* Account Overview */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Account Overview</CardTitle>
+                  <CardTitle className="text-lg">{t('accountOverview')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
@@ -99,21 +103,21 @@ export default function CoordinatorSettingsPage() {
                     <h3 className="font-medium">{profile.name}</h3>
                     <p className="text-sm text-gray-600">{profile.role}</p>
                     <Badge variant="secondary" className="mt-2">
-                      Premium Account
+                      {t('premiumAccount')}
                     </Badge>
                   </div>
 
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Member since:</span>
+                      <span className="text-gray-600">{common('time.memberSince')}:</span>
                       <span>Jan 2024</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Groups created:</span>
+                      <span className="text-gray-600">{t('groupsCreated')}:</span>
                       <span>3</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total participants:</span>
+                      <span className="text-gray-600">{t('totalParticipants')}:</span>
                       <span>127</span>
                     </div>
                   </div>
@@ -123,20 +127,20 @@ export default function CoordinatorSettingsPage() {
               {/* Quick Actions */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Quick Actions</CardTitle>
+                  <CardTitle className="text-lg">{t('quickActions')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button variant="outline" className="w-full justify-start">
                     <Mail className="h-4 w-4 mr-2" />
-                    Export Data
+                    {t('exportData')}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Shield className="h-4 w-4 mr-2" />
-                    Two-Factor Auth
+                    {t('twoFactorAuth')}
                   </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Palette className="h-4 w-4 mr-2" />
-                    Customize Theme
+                    {t('customizeTheme')}
                   </Button>
                 </CardContent>
               </Card>
@@ -144,14 +148,14 @@ export default function CoordinatorSettingsPage() {
               {/* Support */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Need Help?</CardTitle>
+                  <CardTitle className="text-lg">{t('needHelp')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm text-gray-600">
-                    Have questions about using the platform? Our support team is here to help.
+                    {t('helpDescription')}
                   </p>
                   <Button variant="outline" className="w-full">
-                    Contact Support
+                    {t('contactSupport')}
                   </Button>
                 </CardContent>
               </Card>

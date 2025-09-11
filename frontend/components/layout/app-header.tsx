@@ -1,7 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from "@/components/ui/button"
+import { LanguageSelector } from "@/components/ui/language-selector"
 import { BookOpen, Menu } from "lucide-react"
 
 interface AppHeaderProps {
@@ -10,6 +12,9 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ showNavigation = true, onMenuClick }: AppHeaderProps) {
+  const locale = useLocale();
+  const t = useTranslations('navigation');
+
   return (
     <header className="border-b bg-white shadow-sm">
       <div className="flex h-16 items-center px-4 lg:px-6">
@@ -25,28 +30,33 @@ export function AppHeader({ showNavigation = true, onMenuClick }: AppHeaderProps
             </Button>
           )}
           
-          <Link href="/" className="flex items-center gap-2 font-semibold">
+          <Link href={`/${locale}`} className="flex items-center gap-2 font-semibold">
             <BookOpen className="h-6 w-6 text-blue-600" />
-            <span className="text-xl">Digital Yearbook</span>
+            <span className="text-xl">{t('brand')}</span>
           </Link>
         </div>
 
-        {showNavigation && (
-          <nav className="ml-auto flex items-center gap-4">
-            <Link 
-              href="/coordinator" 
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Coordinator
-            </Link>
-            <Link 
-              href="/participant" 
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              Participant
-            </Link>
-          </nav>
-        )}
+        <div className="ml-auto flex items-center gap-4">
+          {showNavigation && (
+            <nav className="flex items-center gap-4">
+              <Link 
+                href={`/${locale}/coordinator`}
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {t('coordinator.dashboard')}
+              </Link>
+              <Link 
+                href={`/${locale}/participant`}
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {t('participant.title')}
+              </Link>
+            </nav>
+          )}
+          
+          {/* Language Selector in top right */}
+          <LanguageSelector />
+        </div>
       </div>
     </header>
   )

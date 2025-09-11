@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from 'next-intl'
 import { securitySettingsSchema, type SecuritySettingsFormData } from "@/lib/validations/settings"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,6 +17,9 @@ interface SecuritySettingsFormProps {
 }
 
 export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySettingsFormProps) {
+  const t = useTranslations('coordinator.settings')
+  const common = useTranslations('common')
+  
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -41,21 +45,21 @@ export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySe
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
+        <CardTitle>{t('securitySettings')}</CardTitle>
         <CardDescription>
-          Change your password to keep your account secure
+          {t('securityDescription')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="currentPassword">Current Password *</Label>
+            <Label htmlFor="currentPassword">{common('fields.currentPassword')} *</Label>
             <div className="relative">
               <Input
                 id="currentPassword"
                 type={showCurrentPassword ? "text" : "password"}
                 {...form.register("currentPassword")}
-                placeholder="Enter your current password"
+                placeholder={common('placeholders.enterCurrentPassword')}
               />
               <Button
                 type="button"
@@ -79,13 +83,13 @@ export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySe
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="newPassword">New Password *</Label>
+            <Label htmlFor="newPassword">{common('fields.newPassword')} *</Label>
             <div className="relative">
               <Input
                 id="newPassword"
                 type={showNewPassword ? "text" : "password"}
                 {...form.register("newPassword")}
-                placeholder="Enter your new password"
+                placeholder={common('placeholders.enterNewPassword')}
               />
               <Button
                 type="button"
@@ -107,18 +111,18 @@ export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySe
               </p>
             )}
             <p className="text-xs text-gray-500">
-              Password must contain uppercase, lowercase, number and special character
+              {common('validation.passwordRequirements')}
             </p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="confirmPassword">Confirm New Password *</Label>
+            <Label htmlFor="confirmPassword">{common('fields.confirmPassword')} *</Label>
             <div className="relative">
               <Input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 {...form.register("confirmPassword")}
-                placeholder="Confirm your new password"
+                placeholder={common('placeholders.confirmNewPassword')}
               />
               <Button
                 type="button"
@@ -143,8 +147,7 @@ export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySe
 
           <div className="bg-amber-50 p-4 rounded-lg">
             <p className="text-sm text-amber-800">
-              <strong>Security tip:</strong> Use a strong password with at least 8 characters,
-              including uppercase and lowercase letters, numbers, and special characters.
+              {t('securityTip')}
             </p>
           </div>
 
@@ -156,12 +159,12 @@ export function SecuritySettingsForm({ onSubmit, isLoading = false }: SecuritySe
               {form.formState.isSubmitting || isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Updating...
+                  {common('status.updating')}
                 </>
               ) : (
                 <>
                   <Save className="h-4 w-4 mr-2" />
-                  Update Password
+                  {t('updatePassword')}
                 </>
               )}
             </Button>

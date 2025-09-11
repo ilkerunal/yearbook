@@ -432,13 +432,16 @@ export function PersonalInfoForm() {
 
 #### 6.1 Component Coverage
 
-**Navigation & Layout**
-- [ ] Coordinator sidebar navigation
-- [ ] App header and breadcrumbs
-- [ ] Page wrappers and layouts
+**✅ COMPLETED - Navigation & Layout**
+- [x] Coordinator sidebar navigation ✅ (2024-01-10)
+- [x] App header and breadcrumbs ✅ (2024-01-10)
+- [x] Page wrappers and layouts ✅ (2024-01-10)
 
-**Dashboard & Groups**
-- [ ] Coordinator dashboard cards and stats
+**✅ COMPLETED - Home & Dashboard**
+- [x] Home page content ✅ (2024-01-10)
+- [x] Coordinator dashboard cards and stats ✅ (2024-01-10)
+
+**🔄 IN PROGRESS - Dashboard & Groups**
 - [ ] Groups listing page
 - [ ] Group details page
 - [ ] Create group form
@@ -467,7 +470,39 @@ export function PersonalInfoForm() {
 - [ ] Loading and success messages
 - [ ] Confirmation dialogs
 
-#### 6.2 Translation Quality Assurance
+#### 6.2 Migration Progress Tracking
+
+**✅ COMPLETED MIGRATIONS (2024-01-10)**
+1. **Core Infrastructure** ✅
+   - next-intl setup and configuration
+   - Middleware for locale detection
+   - Translation file structure (tr.json, en.json)
+   - App Router restructure with [locale] directory
+
+2. **Navigation Components** ✅
+   - App Header: Brand name, navigation links
+   - Coordinator Sidebar: All navigation items with locale-aware routing
+   - Language Selector: Working in top-right header position
+
+3. **Home Page** ✅
+   - Role selection section
+   - Coordinator and participant cards
+   - Feature descriptions and all UI text
+
+4. **Coordinator Dashboard** ✅
+   - Page title and description
+   - Statistics cards (Total Groups, Participants, Pending Review, Completed)
+   - Recent activity section with status badges
+   - Groups overview with progress indicators
+   - All buttons and action labels
+
+**🔄 NEXT PRIORITIES**
+- Groups listing and management pages
+- Participant pages and editor interface
+- Settings and forms
+- Cover editor interface
+
+#### 6.3 Translation Quality Assurance
 - **Native Review**: Turkish translations reviewed by native speakers
 - **Context Validation**: Ensure translations make sense in context
 - **UI Testing**: Test all UI elements in both languages

@@ -11,6 +11,7 @@ export { Button } from "./ui/button"
 export { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card"
 export { Input } from "./ui/input"
 export { Label } from "./ui/label"
+export { LanguageSelector } from "./ui/language-selector"
 
 // Providers
 export { Providers } from "./providers"

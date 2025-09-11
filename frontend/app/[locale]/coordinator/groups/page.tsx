@@ -1,5 +1,6 @@
 "use client"
 
+import { useLocale, useTranslations } from 'next-intl'
 import { CoordinatorLayout } from "@/components/layout/coordinator-layout"
 import { PageWrapper } from "@/components/layout/page-wrapper"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { mockGroups } from "@/mock"
-import { 
+import {
   Plus,
   Search,
   Users,
@@ -21,6 +22,8 @@ import {
 import Link from "next/link"
 
 export default function GroupsPage() {
+  const locale = useLocale()
+  const t = useTranslations('coordinator.groups')
   const groups = mockGroups
 
   return (
@@ -30,15 +33,15 @@ export default function GroupsPage() {
           {/* Header */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Groups</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
               <p className="text-gray-600 mt-1">
-                Manage all your yearbook groups and projects
+                {t('description')}
               </p>
             </div>
-            <Link href="/coordinator/groups/new">
+            <Link href={`/${locale}/coordinator/groups/new`}>
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
-                Create New Group
+                {t('createNewGroup')}
               </Button>
             </Link>
           </div>
@@ -51,17 +54,17 @@ export default function GroupsPage() {
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
-                      placeholder="Search groups..."
+                      placeholder={t('searchPlaceholder')}
                       className="pl-10"
                     />
                   </div>
                 </div>
                 <Button variant="outline">
                   <Calendar className="h-4 w-4 mr-2" />
-                  Filter by Date
+                  {t('filterByDate')}
                 </Button>
                 <Button variant="outline">
-                  Status
+                  {t('filterByStatus')}
                 </Button>
               </div>
             </CardContent>
@@ -90,18 +93,18 @@ export default function GroupsPage() {
                           <CardTitle className="text-xl">{group.name}</CardTitle>
                           {canGeneratePDF && (
                             <Badge variant="success" className="text-xs">
-                              Ready for PDF
+                              {t('readyForPdf')}
                             </Badge>
                           )}
                         </div>
                         <CardDescription className="flex items-center gap-4">
                           <span className="flex items-center gap-1">
                             <Users className="h-4 w-4" />
-                            {stats.total} participants
+                            {stats.total} {t('participants')}
                           </span>
                           <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
-                            Created {new Date(group.createdAt).toLocaleDateString()}
+                            {t('created')} {new Date(group.createdAt).toLocaleDateString()}
                           </span>
                         </CardDescription>
                       </div>
@@ -116,8 +119,8 @@ export default function GroupsPage() {
                     {/* Progress Section */}
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="font-medium">Progress</span>
-                        <span className="text-gray-600">{progressPercentage}% complete</span>
+                        <span className="font-medium">{t('progress')}</span>
+                        <span className="text-gray-600">{progressPercentage}% {t('complete')}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
                         <div 
@@ -130,19 +133,19 @@ export default function GroupsPage() {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
                         <div className="text-center">
                           <div className="text-lg font-semibold text-green-600">{stats.completed}</div>
-                          <div className="text-gray-600">Completed</div>
+                          <div className="text-gray-600">{t('completed')}</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-semibold text-yellow-600">{stats.pending}</div>
-                          <div className="text-gray-600">Pending</div>
+                          <div className="text-gray-600">{t('pendingReview')}</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-semibold text-blue-600">{stats.inProgress}</div>
-                          <div className="text-gray-600">In Progress</div>
+                          <div className="text-gray-600">{t('inProgress')}</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-semibold text-gray-600">{stats.notStarted}</div>
-                          <div className="text-gray-600">Not Started</div>
+                          <div className="text-gray-600">{t('notStarted')}</div>
                         </div>
                       </div>
                     </div>
@@ -150,31 +153,31 @@ export default function GroupsPage() {
                     {/* Actions */}
                     <div className="flex justify-between items-center pt-4 border-t">
                       <div className="text-sm text-gray-500">
-                        Last updated {new Date(group.updatedAt).toLocaleDateString()}
+                        {t('lastUpdated')} {new Date(group.updatedAt).toLocaleDateString()}
                       </div>
                       <div className="flex gap-2">
-                        <Link href={`/coordinator/groups/${group.id}`}>
+                        <Link href={`/${locale}/coordinator/groups/${group.id}`}>
                           <Button variant="outline" size="sm">
                             <Eye className="h-4 w-4 mr-2" />
-                            View Details
+                            {t('viewDetails')}
                           </Button>
                         </Link>
-                        <Link href={`/coordinator/groups/${group.id}/cover-editor`}>
+                        <Link href={`/${locale}/coordinator/groups/${group.id}/cover-editor`}>
                           <Button variant="outline" size="sm">
                             <ImageIcon className="h-4 w-4 mr-2" />
-                            Cover Editor
+                            {t('editCover')}
                           </Button>
                         </Link>
-                        <Link href={`/coordinator/groups/${group.id}/settings`}>
+                        <Link href={`/${locale}/coordinator/groups/${group.id}/settings`}>
                           <Button variant="outline" size="sm">
                             <Settings className="h-4 w-4 mr-2" />
-                            Settings
+                            {t('groupSettings')}
                           </Button>
                         </Link>
                         {canGeneratePDF && (
                           <Button size="sm">
                             <Download className="h-4 w-4 mr-2" />
-                            Generate PDF
+                            {t('downloadPdf')}
                           </Button>
                         )}
                       </div>
@@ -190,14 +193,14 @@ export default function GroupsPage() {
             <Card>
               <CardContent className="text-center py-12">
                 <Users className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-                <h3 className="text-lg font-semibold mb-2">No groups yet</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('noGroups')}</h3>
                 <p className="text-gray-600 mb-6">
-                  Create your first yearbook group to get started.
+                  {t('noGroupsDescription')}
                 </p>
-                <Link href="/coordinator/groups/new">
+                <Link href={`/${locale}/coordinator/groups/new`}>
                   <Button>
                     <Plus className="h-4 w-4 mr-2" />
-                    Create Your First Group
+                    {t('createNewGroup')}
                   </Button>
                 </Link>
               </CardContent>

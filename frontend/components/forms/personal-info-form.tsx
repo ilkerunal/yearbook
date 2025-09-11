@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from 'next-intl'
 import { personalInfoSchema, type PersonalInfoFormData } from "@/lib/validations/settings"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,6 +17,9 @@ interface PersonalInfoFormProps {
 }
 
 export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }: PersonalInfoFormProps) {
+  const t = useTranslations('coordinator.settings')
+  const common = useTranslations('common')
+  
   const form = useForm<PersonalInfoFormData>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -39,19 +43,19 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Personal Information</CardTitle>
+        <CardTitle>{t('personalInformation')}</CardTitle>
         <CardDescription>
-          Update your basic information and contact details
+          {t('personalInfoDescription')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name *</Label>
+            <Label htmlFor="name">{common('fields.fullName')} *</Label>
             <Input
               id="name"
               {...form.register("name")}
-              placeholder="Enter your full name"
+              placeholder={common('placeholders.enterFullName')}
             />
             {form.formState.errors.name && (
               <p className="text-sm text-red-600">
@@ -61,12 +65,12 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email Address *</Label>
+            <Label htmlFor="email">{common('fields.email')} *</Label>
             <Input
               id="email"
               type="email"
               {...form.register("email")}
-              placeholder="Enter your email address"
+              placeholder={common('placeholders.enterEmail')}
             />
             {form.formState.errors.email && (
               <p className="text-sm text-red-600">
@@ -76,11 +80,11 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
+            <Label htmlFor="phone">{common('fields.phone')}</Label>
             <Input
               id="phone"
               {...form.register("phone")}
-              placeholder="Enter your phone number"
+              placeholder={common('placeholders.enterPhone')}
             />
             {form.formState.errors.phone && (
               <p className="text-sm text-red-600">
@@ -90,11 +94,11 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="school">School/Organization *</Label>
+            <Label htmlFor="school">{common('fields.school')}/{common('fields.organization')} *</Label>
             <Input
               id="school"
               {...form.register("school")}
-              placeholder="Enter your school or organization"
+              placeholder={common('placeholders.enterSchool')}
             />
             {form.formState.errors.school && (
               <p className="text-sm text-red-600">
@@ -104,11 +108,11 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="role">Role/Title *</Label>
+            <Label htmlFor="role">{common('fields.role')}/Unvan *</Label>
             <Input
               id="role"
               {...form.register("role")}
-              placeholder="Enter your role or title"
+              placeholder={common('placeholders.enterRole')}
             />
             {form.formState.errors.role && (
               <p className="text-sm text-red-600">
@@ -125,12 +129,12 @@ export function PersonalInfoForm({ onSubmit, defaultValues, isLoading = false }:
               {form.formState.isSubmitting || isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Updating...
+                  {common('status.updating')}
                 </>
               ) : (
                 <>
                   <Save className="h-4 w-4 mr-2" />
-                  Save Changes
+                  {t('saveChanges')}
                 </>
               )}
             </Button>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from 'next-intl'
 import { CoordinatorLayout } from "@/components/layout/coordinator-layout"
 import { PageWrapper } from "@/components/layout/page-wrapper"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,6 +18,8 @@ import {
 } from "lucide-react"
 
 export default function ReportsPage() {
+  const t = useTranslations('coordinator.reports')
+  const common = useTranslations('common')
   const groups = mockGroups
 
   // Calculate overall statistics
@@ -38,19 +41,19 @@ export default function ReportsPage() {
           {/* Header */}
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Reports & Analytics</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
               <p className="text-gray-600 mt-1">
-                Overview of all yearbook projects and progress
+                {t('description')}
               </p>
             </div>
             <div className="flex gap-3">
               <Button variant="outline">
                 <Calendar className="h-4 w-4 mr-2" />
-                Date Range
+                {t('dateRange')}
               </Button>
               <Button>
                 <Download className="h-4 w-4 mr-2" />
-                Export Report
+                {t('exportReport')}
               </Button>
             </div>
           </div>
@@ -59,52 +62,52 @@ export default function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Groups</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('totalGroups')}</CardTitle>
                 <FileText className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{totalGroups}</div>
                 <p className="text-xs text-muted-foreground">
-                  Active yearbook projects
+                  {t('activeProjects')}
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Participants</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('totalParticipants')}</CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{totalParticipants}</div>
                 <p className="text-xs text-muted-foreground">
-                  Across all groups
+                  {t('acrossAllGroups')}
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('completionRate')}</CardTitle>
                 <TrendingUp className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{completionRate}%</div>
                 <p className="text-xs text-muted-foreground">
-                  {completedPages} of {totalParticipants} complete
+                  {completedPages} {t('ofComplete')} {totalParticipants} {t('totalLabel')}
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Pending Review</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('pendingReviewLabel')}</CardTitle>
                 <Clock className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{pendingReview}</div>
                 <p className="text-xs text-muted-foreground">
-                  Awaiting review
+                  {t('awaitingReview')}
                 </p>
               </CardContent>
             </Card>
@@ -117,10 +120,10 @@ export default function ReportsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5" />
-                  Group Progress Overview
+                  {t('groupProgressOverview')}
                 </CardTitle>
                 <CardDescription>
-                  Completion status across all groups
+                  {t('completionStatusAllGroups')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -145,8 +148,8 @@ export default function ReportsPage() {
                           />
                         </div>
                         <div className="flex justify-between text-xs text-muted-foreground">
-                          <span>{stats.completed} completed</span>
-                          <span>{stats.total} total</span>
+                          <span>{stats.completed} {t('completedLabel')}</span>
+                          <span>{stats.total} {t('totalLabel')}</span>
                         </div>
                       </div>
                     )
@@ -158,9 +161,9 @@ export default function ReportsPage() {
             {/* Recent Activity */}
             <Card>
               <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
+                <CardTitle>{t('recentActivity')}</CardTitle>
                 <CardDescription>
-                  Latest updates across all projects
+                  {t('latestUpdates')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -168,37 +171,37 @@ export default function ReportsPage() {
                   <div className="flex items-center gap-4">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">5 pages approved today</p>
-                      <p className="text-xs text-gray-500">Across 3 different groups</p>
+                      <p className="text-sm font-medium">5 {t('pagesApprovedToday')}</p>
+                      <p className="text-xs text-gray-500">{t('acrossDifferentGroups')}</p>
                     </div>
-                    <span className="text-xs text-gray-500">2h ago</span>
+                    <span className="text-xs text-gray-500">2 {t('hoursAgo')}</span>
                   </div>
                   
                   <div className="flex items-center gap-4">
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">New group created</p>
+                      <p className="text-sm font-medium">{t('newGroupCreated')}</p>
                       <p className="text-xs text-gray-500">Roosevelt Elementary - 6th Grade</p>
                     </div>
-                    <span className="text-xs text-gray-500">1d ago</span>
+                    <span className="text-xs text-gray-500">1 {t('dayAgo')}</span>
                   </div>
                   
                   <div className="flex items-center gap-4">
                     <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">3 pages submitted for review</p>
+                      <p className="text-sm font-medium">3 {t('pagesSubmittedReview')}</p>
                       <p className="text-xs text-gray-500">Westfield High School - Class of 2024</p>
                     </div>
-                    <span className="text-xs text-gray-500">2d ago</span>
+                    <span className="text-xs text-gray-500">2 {t('daysAgo')}</span>
                   </div>
                   
                   <div className="flex items-center gap-4">
                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">PDF generated successfully</p>
+                      <p className="text-sm font-medium">{t('pdfGeneratedSuccessfully')}</p>
                       <p className="text-xs text-gray-500">Middle School Memories - Class of 2024</p>
                     </div>
-                    <span className="text-xs text-gray-500">3d ago</span>
+                    <span className="text-xs text-gray-500">3 {t('daysAgo')}</span>
                   </div>
                 </div>
               </CardContent>
@@ -208,9 +211,9 @@ export default function ReportsPage() {
           {/* Detailed Group Analysis */}
           <Card>
             <CardHeader>
-              <CardTitle>Group Analysis</CardTitle>
+              <CardTitle>{t('groupAnalysis')}</CardTitle>
               <CardDescription>
-                Detailed breakdown of each group&apos;s progress
+                {t('detailedBreakdown')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -218,12 +221,12 @@ export default function ReportsPage() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-medium">Group Name</th>
-                      <th className="text-left py-3 px-4 font-medium">Participants</th>
-                      <th className="text-left py-3 px-4 font-medium">Completed</th>
-                      <th className="text-left py-3 px-4 font-medium">Pending Review</th>
-                      <th className="text-left py-3 px-4 font-medium">Progress</th>
-                      <th className="text-left py-3 px-4 font-medium">Status</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('groupName')}</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('participantsHeader')}</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('completedHeader')}</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('pendingReviewHeader')}</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('progressHeader')}</th>
+                      <th className="text-left py-3 px-4 font-medium">{t('statusHeader')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -241,7 +244,7 @@ export default function ReportsPage() {
                           <td className="py-3 px-4">
                             <div className="font-medium">{group.name}</div>
                             <div className="text-xs text-gray-500">
-                              Created {new Date(group.createdAt).toLocaleDateString()}
+                              {t('createdLabel')} {new Date(group.createdAt).toLocaleDateString()}
                             </div>
                           </td>
                           <td className="py-3 px-4">{stats.total}</td>
@@ -271,11 +274,11 @@ export default function ReportsPage() {
                           <td className="py-3 px-4">
                             {canGeneratePDF ? (
                               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                Ready for PDF
+                                {t('readyForPdf')}
                               </span>
                             ) : (
                               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                In Progress
+                                {t('inProgressStatus')}
                               </span>
                             )}
                           </td>

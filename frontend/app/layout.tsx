@@ -1,25 +1,8 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { Providers } from "@/components/providers"
-
-const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "Digital Yearbook Platform",
-  description: "Create collaborative yearbooks with ease",
-}
-
+// This layout only applies to pages that are not nested under [locale]
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  )
+  return children;
 }
