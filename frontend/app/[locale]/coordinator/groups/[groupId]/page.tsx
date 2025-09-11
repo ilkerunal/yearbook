@@ -104,10 +104,10 @@ export default function GroupPage({ params }: GroupPageProps) {
         <div className="space-y-8">
           {/* Header */}
           <div className="flex items-center gap-4 mb-6">
-            <Link href="/coordinator">
+            <Link href={`/${locale}/coordinator`}>
               <Button variant="ghost" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Dashboard
+                {t('backToDashboard')}
               </Button>
             </Link>
           </div>
@@ -116,31 +116,31 @@ export default function GroupPage({ params }: GroupPageProps) {
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{group.name}</h1>
               <p className="text-gray-600 mt-1">
-                Created {new Date(group.createdAt).toLocaleDateString()} • 
-                Last updated {new Date(group.updatedAt).toLocaleDateString()}
+                {t('created')} {new Date(group.createdAt).toLocaleDateString()} •
+                {t('lastUpdated')} {new Date(group.updatedAt).toLocaleDateString()}
               </p>
             </div>
             <div className="flex gap-3">
-              <Link href={`/coordinator/groups/${group.id}/cover-editor`}>
+              <Link href={`/${locale}/coordinator/groups/${group.id}/cover-editor`}>
                 <Button variant="outline">
                   <ImageIcon className="h-4 w-4 mr-2" />
-                  Cover Editor
+                  {tDetails('actions.editCover')}
                 </Button>
               </Link>
-              <Link href={`/coordinator/groups/${group.id}/settings`}>
+              <Link href={`/${locale}/coordinator/groups/${group.id}/settings`}>
                 <Button variant="outline">
                   <Settings className="h-4 w-4 mr-2" />
-                  Settings
+                  {tDetails('actions.groupSettings')}
                 </Button>
               </Link>
               <Button variant="outline">
                 <Plus className="h-4 w-4 mr-2" />
-                Add Participant
+                {tDetails('actions.addParticipant')}
               </Button>
               {canGeneratePDF && (
                 <Button>
                   <Download className="h-4 w-4 mr-2" />
-                  Generate PDF
+                  {tDetails('actions.generatePdf')}
                 </Button>
               )}
             </div>
@@ -150,7 +150,7 @@ export default function GroupPage({ params }: GroupPageProps) {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Total</CardTitle>
+                <CardTitle className="text-sm font-medium">{tDetails('totalParticipants')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stats.total}</div>
@@ -159,7 +159,7 @@ export default function GroupPage({ params }: GroupPageProps) {
 
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-green-600">Completed</CardTitle>
+                <CardTitle className="text-sm font-medium text-green-600">{tDetails('completedPages')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-green-600">{stats.completed}</div>
@@ -168,7 +168,7 @@ export default function GroupPage({ params }: GroupPageProps) {
 
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-yellow-600">Pending Review</CardTitle>
+                <CardTitle className="text-sm font-medium text-yellow-600">{tDetails('pendingReviews')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
@@ -177,7 +177,7 @@ export default function GroupPage({ params }: GroupPageProps) {
 
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-blue-600">In Progress</CardTitle>
+                <CardTitle className="text-sm font-medium text-blue-600">{tDetails('inProgressPages')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-blue-600">{stats.inProgress}</div>

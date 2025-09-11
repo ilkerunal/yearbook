@@ -186,24 +186,31 @@ function ErrorFallback({ error }: { error: Error }) {
 - Component names should be PascalCase: `GroupCard`
 - Export as default: `export default function GroupCard()`
 
-### 2. **Props Interface**
+### 2. **Import Patterns**
+- **External libraries**: Import directly (`import { useState } from "react"`)
+- **UI Components**: Use direct imports (`import { Button } from "@/components/ui/button"`)
+- **Layout Components**: Use direct imports (`import { PageWrapper } from "@/components/layout/page-wrapper"`)
+- **Form Components**: Use direct imports (`import { CreateGroupForm } from "@/components/forms/create-group-form"`)
+- **Components within components**: Use relative imports (`import { Button } from "../ui/button"`)
+
+### 3. **Props Interface**
 - Define interfaces above the component
 - Use JSDoc comments for prop documentation
 - Mark optional props with `?`
 - Group related props using nested interfaces
 
-### 3. **Hooks Usage**
+### 4. **Hooks Usage**
 - Place all hook calls at the top of the component
 - Use custom hooks for complex logic
 - Follow the rules of hooks consistently
 
-### 4. **Styling Approach**
+### 5. **Styling Approach**
 - Use Tailwind CSS utility classes
 - Create custom CSS classes only for complex animations
 - Use CSS variables for theme consistency
 - Responsive design with mobile-first approach
 
-### 5. **Internationalization Requirements**
+### 6. **Internationalization Requirements**
 - All user-facing text must use translations
 - No hardcoded strings in components
 - Use appropriate translation namespaces

@@ -71,8 +71,8 @@
       "passwordRequirements": "Password must contain uppercase, lowercase, number and special character"
     }
   },
-  "brand": "Digital Yearbook",
   "navigation": {
+    "brand": "Digital Yearbook",  
     "home": "Home",
     "coordinator": {
       "dashboard": "Coordinator Dashboard",
@@ -183,6 +183,9 @@
       "readyForPdf": "Ready for PDF",
       "noGroups": "No groups yet",
       "noGroupsDescription": "Get started by creating your first yearbook group",
+      "groupNotFound": "Group Not Found",
+      "groupNotFoundDescription": "The group you're looking for doesn't exist.",
+      "backToDashboard": "Back to Dashboard",
       "status": {
         "active": "Active",
         "draft": "Draft",

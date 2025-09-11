@@ -12,58 +12,55 @@
       "previous": "Önceki",
       "close": "Kapat",
       "confirm": "Onayla",
-      "upload": "Yükle",
+      "viewDetails": "Detayları Görüntüle",
+      "settings": "Ayarlar",
       "download": "İndir",
-      "export": "Dışa Aktar",
-      "import": "İçe Aktar",
+      "upload": "Yükle",
       "search": "Ara",
       "filter": "Filtrele",
-      "refresh": "Yenile"
+      "sort": "Sırala",
+      "reset": "Sıfırla",
+      "preview": "Önizleme"
     },
-    "status": {
+    "states": {
       "loading": "Yükleniyor...",
-      "saved": "Kaydedildi",
-      "error": "Hata",
+      "saving": "Kaydediliyor...",
+      "deleting": "Siliniyor...",
+      "updating": "Güncelleniyor...",
+      "submitting": "Gönderiliyor...",
+      "creating": "Oluşturuluyor...",
       "success": "Başarılı",
-      "pending": "Beklemede",
+      "error": "Hata",
+      "warning": "Uyarı",
       "completed": "Tamamlandı",
-      "draft": "Taslak",
-      "published": "Yayınlandı",
-      "updating": "Güncelleniyor..."
+      "pending": "Beklemede",
+      "inProgress": "Devam Ediyor",
+      "notStarted": "Başlanmadı"
+    },
+    "time": {
+      "created": "Oluşturuldu",
+      "updated": "Güncellendi",
+      "lastUpdated": "Son güncelleme",
+      "memberSince": "Üyelik tarihi"
     },
     "fields": {
       "name": "Ad",
       "fullName": "Ad Soyad",
       "email": "E-posta",
-      "password": "Şifre",
-      "confirmPassword": "Şifreyi Onayla",
+      "phone": "Telefon",
+      "school": "Okul",
+      "organization": "Organizasyon",
+      "role": "Rol",
       "currentPassword": "Mevcut Şifre",
       "newPassword": "Yeni Şifre",
-      "description": "Açıklama",
-      "title": "Başlık",
-      "date": "Tarih",
-      "time": "Saat",
-      "location": "Konum",
-      "phone": "Telefon",
-      "address": "Adres",
-      "school": "Okul",
-      "role": "Rol",
-      "organization": "Organizasyon"
-    },
-    "messages": {
-      "confirmDelete": "Bu öğeyi silmek istediğinizden emin misiniz?",
-      "unsavedChanges": "Kaydedilmemiş değişiklikleriniz var. Devam etmek istediğinizden emin misiniz?",
-      "networkError": "Ağ bağlantısı hatası. Lütfen tekrar deneyin.",
-      "unknownError": "Bilinmeyen bir hata oluştu.",
-      "noResults": "Sonuç bulunamadı",
-      "searchPlaceholder": "Aramak için yazın..."
+      "confirmPassword": "Şifreyi Onayla"
     },
     "placeholders": {
-      "enterFullName": "Ad ve soyadınızı girin",
+      "enterFullName": "Ad soyadınızı girin",
       "enterEmail": "E-posta adresinizi girin",
       "enterPhone": "Telefon numaranızı girin",
-      "enterSchool": "Okul veya organizasyonunuz",
-      "enterRole": "Rol veya unvanınızı girin",
+      "enterSchool": "Okulunuzu veya organizasyonunuzu girin",
+      "enterRole": "Rolünüzü veya unvanınızı girin",
       "enterCurrentPassword": "Mevcut şifrenizi girin",
       "enterNewPassword": "Yeni şifrenizi girin",
       "confirmNewPassword": "Yeni şifrenizi onaylayın"
@@ -74,8 +71,8 @@
       "passwordRequirements": "Şifre büyük harf, küçük harf, sayı ve özel karakter içermelidir"
     }
   },
-  "brand": "Digital Yearbook",
   "navigation": {
+    "brand": "Digital Yearbook",
     "home": "Ana Sayfa",
     "coordinator": {
       "dashboard": "Koordinatör Paneli",
@@ -87,6 +84,44 @@
       "title": "Katılımcı",
       "dashboard": "Pano",
       "editor": "Editör"
+    }
+  },
+  "forms": {
+    "labels": {
+      "name": "Ad",
+      "fullName": "Ad Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "school": "Okul",
+      "role": "Rol",
+      "password": "Şifre",
+      "currentPassword": "Mevcut Şifre",
+      "newPassword": "Yeni Şifre",
+      "confirmPassword": "Şifreyi Onayla",
+      "coverTitle": "Kapak Başlığı",
+      "groupName": "Grup Adı",
+      "participants": "Katılımcılar"
+    },
+    "placeholders": {
+      "enterName": "Adınızı girin...",
+      "enterEmail": "E-posta adresinizi girin...",
+      "enterPhone": "Telefon numaranızı girin...",
+      "searchGroups": "Grupları ara...",
+      "enterTitle": "Başlık girin...",
+      "enterPassword": "Şifrenizi girin...",
+      "enterGroupName": "Grup adını girin...",
+      "enterCurrentPassword": "Mevcut şifrenizi girin...",
+      "enterNewPassword": "Yeni şifrenizi girin...",
+      "confirmNewPassword": "Yeni şifrenizi onaylayın..."
+    },
+    "validation": {
+      "required": "Bu alan zorunludur",
+      "invalidEmail": "Geçerli bir e-posta adresi girin",
+      "minLength": "En az {min} karakter olmalıdır",
+      "maxLength": "En fazla {max} karakter olmalıdır",
+      "passwordMismatch": "Şifreler eşleşmiyor",
+      "invalidPhone": "Geçerli bir telefon numarası girin",
+      "passwordRequirements": "Şifre büyük harf, küçük harf, sayı ve özel karakter içermelidir"
     }
   },
   "coordinator": {
@@ -123,35 +158,6 @@
         "pendingReview": "İnceleme Bekleyen",
         "inProgress": "Devam Ediyor",
         "notStarted": "Başlanmadı"
-      }
-    },
-    "groups": {
-      "title": "Grup Yönetimi",
-      "description": "Mezuniyet albümü gruplarınızı oluşturun ve yönetin",
-      "createNewGroup": "Yeni Grup Oluştur",
-      "searchPlaceholder": "Grupları ara...",
-      "filterByDate": "Tarihe Göre Filtrele",
-      "filterByStatus": "Duruma Göre Filtrele",
-      "complete": "tamamlandı",
-      "participants": "katılımcı",
-      "created": "Oluşturuldu",
-      "progress": "İlerleme",
-      "completed": "Tamamlandı",
-      "pendingReview": "İnceleme Bekleyen",
-      "inProgress": "Devam Ediyor",
-      "notStarted": "Başlanmadı",
-      "lastUpdated": "Son güncelleme",
-      "viewDetails": "Detayları Görüntüle",
-      "editCover": "Kapak Düzenle",
-      "groupSettings": "Grup Ayarları",
-      "downloadPdf": "PDF İndir",
-      "readyForPdf": "PDF için Hazır",
-      "noGroups": "Henüz grup yok",
-      "noGroupsDescription": "İlk mezuniyet albümü grubunuzu oluşturarak başlayın",
-      "status": {
-        "active": "Aktif",
-        "draft": "Taslak",
-        "completed": "Tamamlandı"
       }
     },
     "forms": {
@@ -257,6 +263,34 @@
     },
     "groupDetails": {
       "title": "Grup Detayları",
+      "overview": "Genel Bakış",
+      "participants": "Katılımcılar",
+      "participantsDescription": "Katılımcı sayfalarını yönetin ve gönderileri inceleyin",
+      "filterByStatus": "Duruma Göre Filtrele",
+      "groupStats": "Grup İstatistikleri",
+      "totalParticipants": "Toplam Katılımcı",
+      "completedPages": "Tamamlanan Sayfalar",
+      "pendingReviews": "Bekleyen İncelemeler",
+      "inProgressPages": "Devam Eden Sayfalar",
+      "notStartedPages": "Başlanmamış Sayfalar",
+      "recentActivity": "Son Aktiviteler",
+      "viewPage": "Sayfayı Görüntüle",
+      "sendMessage": "Mesaj Gönder",
+      "approvePage": "Sayfayı Onayla",
+      "requestChanges": "Değişiklik İste",
+      "pageStatus": {
+        "notStarted": "Başlanmadı",
+        "inProgress": "Devam Ediyor",
+        "submittedForReview": "İnceleme İçin Gönderildi",
+        "changesRequested": "Değişiklik İstendi",
+        "readyForApproval": "Onay İçin Hazır"
+      },
+      "actions": {
+        "generatePdf": "PDF Oluştur",
+        "editCover": "Kapağı Düzenle",
+        "groupSettings": "Grup Ayarları",
+        "addParticipant": "Katılımcı Ekle"
+      },
       "backToGroup": "Gruba Geri Dön",
       "groupSettings": "Grup Ayarları",
       "basicInformation": "Temel Bilgiler",
@@ -266,7 +300,6 @@
       "participantManagement": "Katılımcı Yönetimi",
       "participantManagementDesc": "Bu mezuniyet albümüne kimlerin erişip katkıda bulunabileceğini yönetin",
       "currentParticipants": "Mevcut Katılımcılar",
-      "totalParticipants": "toplam katılımcı",
       "addParticipants": "Katılımcı Ekle",
       "copyLink": "Bağlantıyı Kopyala",
       "remove": "Kaldır",
@@ -287,6 +320,38 @@
       "irreversibleActions": "Bu grup için geri alınamaz işlemler",
       "deleteGroup": "Grubu Sil",
       "deleteGroupDesc": "Bu grubu ve tüm ilişkili verileri kalıcı olarak sil"
+    },
+    "groups": {
+      "title": "Gruplar",
+      "description": "Tüm mezuniyet albümü gruplarınızı ve projelerinizi yönetin",
+      "createNewGroup": "Yeni Grup Oluştur",
+      "searchPlaceholder": "Grupları ara...",
+      "filterByDate": "Tarihe Göre Filtrele",
+      "filterByStatus": "Duruma Göre Filtrele",
+      "complete": "tamamlandı",
+      "viewDetails": "Detayları Görüntüle",
+      "groupSettings": "Grup Ayarları",
+      "downloadPdf": "PDF İndir",
+      "readyForPdf": "PDF için Hazır",
+      "editCover": "Kapağı Düzenle",
+      "participants": "katılımcı",
+      "created": "Oluşturuldu",
+      "lastUpdated": "Son güncelleme",
+      "progress": "İlerleme",
+      "completed": "Tamamlandı",
+      "inProgress": "Devam Ediyor",
+      "notStarted": "Başlanmadı",
+      "pendingReview": "İnceleme Bekleyen",
+      "noGroups": "Henüz grup yok",
+      "noGroupsDescription": "İlk mezuniyet albümü grubunuzu oluşturarak başlayın",
+      "groupNotFound": "Grup Bulunamadı",
+      "groupNotFoundDescription": "Aradığınız grup mevcut değil.",
+      "backToDashboard": "Panoya Geri Dön",
+      "status": {
+        "active": "Aktif",
+        "draft": "Taslak",
+        "completed": "Tamamlandı"
+      }
     },
     "settings": {
       "title": "Ayarlar",
@@ -370,7 +435,6 @@
     "title": "Katılımcı",
     "description": "Mezuniyet albümü sayfanızı oluşturun",
     "accessPortal": "Erişim Portalı",
-    "editor": "Editör",
     "createYourPage": "Sayfanızı Oluşturun",
     "access": {
       "title": "Katılımcı Erişimi",
@@ -429,10 +493,57 @@
       "notStarted": "Mezuniyet albümü sayfanızı oluşturmak için biyografinizi, fotoğraflarınızı ve anılarınızı ekleyerek başlayın."
     }
   },
+  "metadata": {
+    "title": "Dijital Mezuniyet Albümü Platformu",
+    "description": "Mezuniyet albümü oluşturmayı manuel, kaotik bir süreçten akıcı, otomatik ve dijital bir sürece dönüştürün. Ek özelleştirme ve net ilerleme takibi ile."
+  },
+  "home": {
+    "chooseRole": "Rolünüzü Seçin",
+    "coordinator": {
+      "title": "Koordinatör Paneli",
+      "description": "Mezuniyet albümü projelerini yönetin ve katılımcılarla koordine edin",
+      "features": {
+        "manageGroups": "Mezuniyet albümü grupları oluşturun ve yönetin",
+        "reviewPages": "Katılımcı sayfalarını inceleyin ve onaylayın",
+        "designCovers": "Özel kapaklar tasarlayın",
+        "generatePdf": "Son PDF mezuniyet albümlerini oluşturun"
+      },
+      "button": "Koordinatör Paneline Erişin"
+    },
+    "participant": {
+      "title": "Katılımcı Editörü",
+      "description": "Kişiselleştirilmiş mezuniyet albümü sayfanızı oluşturun",
+      "features": {
+        "designLayout": "Kişisel sayfa düzeninizi tasarlayın",
+        "uploadPhotos": "Fotoğraflar ve anılar yükleyin",
+        "writeBio": "Biyografinizi ve favori alıntılarınızı yazın",
+        "submitReview": "Koordinatör incelemesi için gönderin"
+      },
+      "button": "Katılımcı Editörünü Deneyin"
+    },
+    "features": {
+      "title": "Temel Özellikler",
+      "collaborative": {
+        "title": "İşbirlikçi",
+        "description": "Birden fazla katılımcı sayfalarında aynı anda çalışabilir"
+      },
+      "easyToUse": {
+        "title": "Kullanımı Kolay",
+        "description": "Sezgisel editörler sayfa oluşturmayı basit ve eğlenceli hale getirir"
+      },
+      "qualityControl": {
+        "title": "Kalite Kontrolü",
+        "description": "İnceleme ve onay sistemi yüksek kaliteli sonuçlar sağlar"
+      }
+    }
+  },
   "errors": {
     "pageNotFound": "Sayfa Bulunamadı",
     "groupNotFound": "Grup Bulunamadı",
     "backToGroups": "Gruplara Geri Dön",
-    "backToHome": "Ana Sayfaya Dön"
+    "backToDashboard": "Panoya Geri Dön",
+    "somethingWentWrong": "Bir şeyler yanlış gitti",
+    "tryAgain": "Tekrar Dene",
+    "contactSupport": "Destek ile İletişime Geç"
   }
 }

@@ -4,9 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from 'next-intl'
 import { notificationSettingsSchema, type NotificationSettingsFormData } from "@/lib/validations/settings"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Button, Label } from ".."
 import { Save, Loader2 } from "lucide-react"
 
 interface NotificationSettingsFormProps {

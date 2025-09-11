@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { useLocale, useTranslations } from 'next-intl'
-import { Button } from "@/components/ui/button"
-import { LanguageSelector } from "@/components/ui/language-selector"
+import { Button } from "../ui/button"
+import { LanguageSelector } from "../ui/language-selector"
 import { BookOpen, Menu } from "lucide-react"
 
 interface AppHeaderProps {
