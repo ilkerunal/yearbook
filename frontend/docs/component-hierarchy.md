@@ -1,298 +1,247 @@
 # Component Hierarchy & Architecture
 
-## Component Organization
+## Overview
+
+This document outlines the component organization and architecture patterns used in the Digital Yearbook Platform frontend. All components follow TypeScript best practices and support internationalization.
+
+## Component Organization Structure
 
 ### 1. Layout Components (`/components/layout`)
+
 ```
 /layout
-├── app-header.tsx             # Main navigation header
-├── coordinator-sidebar.tsx    # Coordinator navigation sidebar  
-├── page-wrapper.tsx          # Common page layout wrapper
-├── mobile-menu.tsx           # Mobile navigation menu
-└── footer.tsx                # Site footer
+├── app-header.tsx              # Main navigation header with language selector
+├── coordinator-layout.tsx      # Layout wrapper for coordinator pages
+├── coordinator-sidebar.tsx     # Coordinator navigation sidebar
+├── page-wrapper.tsx           # Common page layout wrapper with max-width
+└── participant-layout.tsx      # Layout wrapper for participant pages
 ```
 
-### 2. UI Components (`/components/ui`) 
-*Shadcn UI components - already configured*
+**Key Features:**
+- **Internationalized navigation**: All menu items use `useTranslations` hook
+- **Responsive design**: Mobile-optimized with collapsible sidebar
+- **Language selector**: Integrated language switcher in header
+- **Consistent spacing**: Standardized padding and margin patterns
+
+### 2. UI Components (`/components/ui`)
+
+*Built with Shadcn/ui and Radix UI primitives*
+
 ```
 /ui
-├── button.tsx               # Button variants
-├── card.tsx                 # Card layouts
-├── input.tsx                # Form inputs
-├── select.tsx               # Dropdown selects
-├── dialog.tsx               # Modal dialogs
-├── toast.tsx                # Notifications
-├── badge.tsx                # Status badges
-├── progress.tsx             # Progress indicators
-├── skeleton.tsx             # Loading skeletons
-└── table.tsx                # Data tables
+├── badge.tsx                  # Status indicators and labels
+├── button.tsx                 # Button variants (primary, secondary, outline, etc.)
+├── card.tsx                   # Content containers with header/content/footer
+├── input.tsx                  # Form input fields
+├── label.tsx                  # Form labels
+└── language-selector.tsx      # Language switching component
 ```
+
+**Key Features:**
+- **Accessibility**: Full ARIA support via Radix UI
+- **Theming**: Consistent design system with CSS variables
+- **Variant system**: Multiple styles using class-variance-authority
+- **TypeScript**: Fully typed props and variants
 
 ### 3. Form Components (`/components/forms`)
+
 ```
 /forms
-├── group-create-form.tsx     # Create new group
-├── participant-add-form.tsx  # Add participant to group
-├── cover-editor-form.tsx     # Cover design form
-├── login-form.tsx            # Coordinator login
-├── participant-access-form.tsx # Participant access by token
-└── form-field.tsx            # Reusable form field wrapper
+├── create-group-form.tsx      # Multi-step group creation form
+├── notification-settings-form.tsx  # User notification preferences
+├── personal-info-form.tsx     # Personal information form
+└── security-settings-form.tsx # Password and security settings
 ```
 
-### 4. Dashboard Components (`/components/dashboard`)
-```
-/dashboard
-├── group-card.tsx            # Group overview card
-├── participant-list.tsx      # Participants table/list
-├── status-badge.tsx          # Page status indicator
-├── status-filter.tsx         # Filter by status
-├── activity-feed.tsx         # Recent activity
-├── stats-summary.tsx         # Dashboard statistics
-├── quick-actions.tsx         # Quick action buttons
-└── pdf-generator.tsx         # PDF generation interface
-```
+**Key Features:**
+- **React Hook Form**: Performance-optimized form handling
+- **Zod validation**: Runtime schema validation with TypeScript inference
+- **Internationalization**: All labels, placeholders, and errors are translated
+- **Reusability**: Self-contained forms with clear prop interfaces
 
-### 5. Participant Components (`/components/participant`)
-```
-/participant
-├── page-editor.tsx           # Main editor component
-├── editor-toolbar.tsx        # Editor action buttons
-├── content-preview.tsx       # Read-only content preview
-├── bio-editor.tsx            # Bio text editor
-├── quote-editor.tsx          # Quote text editor
-├── image-gallery.tsx         # Image upload/gallery
-├── submit-review-dialog.tsx  # Submit for review modal
-└── status-indicator.tsx      # Current page status
-```
+### 4. Editor Components (`/components/editor`)
 
-### 6. Editor Components (`/components/editor`)
 ```
 /editor
-├── yearbook-editor.tsx       # Main Editor.js wrapper
-├── editor-blocks/            # Custom Editor.js blocks
-│   ├── header-block.tsx     # Custom header block
-│   ├── paragraph-block.tsx  # Custom paragraph block
-│   ├── image-block.tsx      # Custom image block
-│   ├── list-block.tsx       # Custom list block
-│   └── quote-block.tsx      # Custom quote block
-├── editor-config.tsx         # Editor.js configuration
-├── block-toolbar.tsx         # Custom block toolbar
-└── editor-utils.ts           # Editor helper functions
+├── block-editor.tsx          # Main Editor.js wrapper component
+├── image-block.tsx          # Custom image block for yearbook pages
+├── text-block.tsx           # Enhanced text block with formatting
+└── editor-toolbar.tsx       # Custom toolbar for editing controls
 ```
 
-### 7. Review Components (`/components/review`)
-```
-/review
-├── review-layout.tsx         # Side-by-side review layout
-├── participant-preview.tsx   # Participant page preview
-├── review-actions.tsx        # Approve/request changes
-├── comment-system.tsx        # Review comments
-├── review-history.tsx        # Previous review history
-├── feedback-form.tsx         # Feedback input form
-└── bulk-review.tsx           # Bulk action interface
-```
+**Key Features:**
+- **Editor.js integration**: Block-based WYSIWYG editing
+- **Custom blocks**: Yearbook-specific content blocks
+- **Internationalized UI**: Editor interface supports multiple languages
+- **Save/restore**: Persistent draft functionality
 
-### 8. Shared Components (`/components/shared`)
+### 5. Shared Components (`/components/shared`)
+
 ```
 /shared
-├── loading-spinner.tsx       # Loading indicator
-├── error-boundary.tsx        # Error boundary wrapper
-├── empty-state.tsx           # Empty state illustration
-├── confirmation-dialog.tsx   # Confirmation modal
-├── image-upload.tsx          # Image upload component
-├── status-timeline.tsx       # Status change timeline
-├── search-filter.tsx         # Search and filter bar
-└── pagination.tsx            # Table pagination
+├── group-card.tsx           # Group display card with actions
+├── participant-status.tsx   # Participant progress indicator
+├── progress-bar.tsx         # Visual progress indicators
+├── status-badge.tsx         # Status display with color coding
+└── confirmation-dialog.tsx  # Reusable confirmation modals
 ```
 
-## Hooks Organization (`/lib/hooks`)
+**Key Features:**
+- **Business logic**: Domain-specific components with embedded logic
+- **Internationalization**: All text content is translatable
+- **Consistent styling**: Follows design system patterns
+- **Prop interfaces**: Clear, documented APIs
 
-### 1. Data Hooks
+## Architecture Patterns
+
+### 1. **Component Composition**
+
+Components are designed for maximum reusability and composition:
+
 ```typescript
-// Group management
-useGroups()                   // Fetch all groups
-useGroup(id)                  // Fetch single group
-useCreateGroup()              // Create group mutation
-useUpdateGroup()              // Update group mutation
+// ✅ Good: Composable components
+<Card>
+  <CardHeader>
+    <CardTitle>{t('title')}</CardTitle>
+    <CardDescription>{t('description')}</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <GroupForm onSubmit={handleSubmit} />
+  </CardContent>
+</Card>
 
-// Participant management  
-useParticipants(groupId)      // Fetch group participants
-useParticipant(id)            // Fetch single participant
-useAddParticipant()           // Add participant mutation
-useUpdateParticipantStatus()  // Update status mutation
-useUpdateParticipantContent() // Update content mutation
-
-// Review system
-useReviewActions()            // Approve/request changes
-useReviewHistory(participantId) // Review history
-
-// PDF generation
-useGeneratePDF()              // Generate PDF mutation
+// ❌ Avoid: Monolithic components with too many responsibilities
+<GroupManagementEverything />
 ```
 
-### 2. UI Hooks
-```typescript
-useAuth()                     // Authentication state
-useToast()                    // Toast notifications
-useLocalStorage()             // Local storage state
-useDebounce()                 // Debounced values
-useMediaQuery()               // Responsive breakpoints
-useOnClickOutside()           // Click outside handler
-```
+### 2. **Internationalization Pattern**
 
-### 3. Editor Hooks
-```typescript
-useEditor()                   // Editor.js instance
-useAutoSave()                 // Auto-save content
-useEditorBlocks()             // Block management
-useImageUpload()              // Image upload handling
-```
+All components use the `useTranslations` hook for text content:
 
-## Page Components Structure
-
-### 1. Landing Page (`/app/page.tsx`)
 ```typescript
-export default function HomePage() {
-  return (
-    <PageWrapper>
-      <HeroSection />
-      <RoleSelection />
-      <FeatureHighlights />
-    </PageWrapper>
-  )
-}
-```
+import { useTranslations } from 'next-intl';
 
-### 2. Coordinator Dashboard (`/app/coordinator/page.tsx`)
-```typescript
-export default function CoordinatorDashboard() {
-  const { data: groups } = useGroups()
+export function MyComponent() {
+  const t = useTranslations('namespace');
+  const common = useTranslations('common');
   
   return (
-    <CoordinatorLayout>
-      <DashboardHeader />
-      <StatsummaryData />
-      <GroupsList groups={groups} />
-      <QuickActions />
-    </CoordinatorLayout>
-  )
+    <div>
+      <h1>{t('title')}</h1>
+      <Button>{common('buttons.save')}</Button>
+    </div>
+  );
 }
 ```
 
-### 3. Group Management (`/app/coordinator/[groupId]/page.tsx`)
+### 3. **Type Safety Pattern**
+
+Components have clear, documented prop interfaces:
+
 ```typescript
-export default function GroupPage({ params }: { params: { groupId: string } }) {
-  const { data: group } = useGroup(params.groupId)
+interface ComponentProps {
+  /** Primary title for the component */
+  title: string;
+  /** Optional description text */
+  description?: string;
+  /** Callback when action is completed */
+  onComplete?: (result: ResultType) => void;
+  /** Loading state */
+  isLoading?: boolean;
+}
+
+export function Component({ title, description, onComplete, isLoading }: ComponentProps) {
+  // Implementation
+}
+```
+
+### 4. **Error Boundary Pattern**
+
+Components handle errors gracefully with fallback UI:
+
+```typescript
+import { ErrorBoundary } from 'react-error-boundary';
+
+function ErrorFallback({ error }: { error: Error }) {
+  const t = useTranslations('errors');
   
   return (
-    <CoordinatorLayout>
-      <GroupHeader group={group} />
-      <ParticipantsList participants={group?.participants} />
-      <GroupActions groupId={params.groupId} />
-    </CoordinatorLayout>
-  )
-}
-```
-
-### 4. Participant Editor (`/app/participant/[token]/page.tsx`)
-```typescript
-export default function ParticipantEditor({ params }: { params: { token: string } }) {
-  const { data: participant } = useParticipantByToken(params.token)
-  
-  return (
-    <ParticipantLayout>
-      <EditorHeader participant={participant} />
-      <YearbookEditor 
-        content={participant?.pageContent}
-        onSave={handleSave}
-      />
-      <EditorActions participant={participant} />
-    </ParticipantLayout>
-  )
-}
-```
-
-## State Management Strategy
-
-### 1. Server State (React Query)
-```typescript
-// Query keys organization
-export const queryKeys = {
-  groups: ['groups'] as const,
-  group: (id: string) => ['groups', id] as const,
-  participants: (groupId: string) => ['participants', groupId] as const,
-  participant: (id: string) => ['participants', id] as const,
+    <div className="error-boundary">
+      <h2>{t('somethingWentWrong')}</h2>
+      <p>{error.message}</p>
+    </div>
+  );
 }
 
-// Query client configuration
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      cacheTime: 1000 * 60 * 30, // 30 minutes
-    },
-  },
-})
-```
-
-### 2. Authentication Context
-```typescript
-interface AuthContext {
-  user: AuthUser | null
-  login: (credentials: LoginCredentials) => Promise<void>
-  logout: () => Promise<void>
-  accessParticipantPage: (token: string) => Promise<void>
-  isLoading: boolean
-}
-```
-
-### 3. UI State Context
-```typescript
-interface UIContext {
-  sidebarOpen: boolean
-  setSidebarOpen: (open: boolean) => void
-  theme: 'light' | 'dark'
-  setTheme: (theme: 'light' | 'dark') => void
-}
-```
-
-## Error Handling Strategy
-
-### 1. Error Boundaries
-```typescript
-// Component-level error boundaries
-<ErrorBoundary fallback={<ErrorFallback />}>
-  <Dashboard />
-</ErrorBoundary>
-
-// Page-level error boundaries  
-<ErrorBoundary fallback={<PageError />}>
-  <ParticipantEditor />
+// Usage
+<ErrorBoundary FallbackComponent={ErrorFallback}>
+  <MyComponent />
 </ErrorBoundary>
 ```
 
-### 2. API Error Handling
-```typescript
-// React Query error handling
-const { data, error, isError } = useGroups()
+## Component Guidelines
 
-if (isError) {
-  return <ErrorState error={error} retry={refetch} />
-}
+### 1. **File Naming**
+- Use kebab-case for file names: `group-card.tsx`
+- Component names should be PascalCase: `GroupCard`
+- Export as default: `export default function GroupCard()`
+
+### 2. **Props Interface**
+- Define interfaces above the component
+- Use JSDoc comments for prop documentation
+- Mark optional props with `?`
+- Group related props using nested interfaces
+
+### 3. **Hooks Usage**
+- Place all hook calls at the top of the component
+- Use custom hooks for complex logic
+- Follow the rules of hooks consistently
+
+### 4. **Styling Approach**
+- Use Tailwind CSS utility classes
+- Create custom CSS classes only for complex animations
+- Use CSS variables for theme consistency
+- Responsive design with mobile-first approach
+
+### 5. **Internationalization Requirements**
+- All user-facing text must use translations
+- No hardcoded strings in components
+- Use appropriate translation namespaces
+- Provide context for translators with comments
+
+## Testing Strategy
+
+### **Component Testing**
+- **Unit tests**: Test component logic and rendering
+- **Integration tests**: Test component interactions
+- **Accessibility tests**: Ensure ARIA compliance
+- **Internationalization tests**: Verify translation keys work correctly
+
+### **Testing Patterns**
+```typescript
+// Test translations are working
+expect(screen.getByText(/translated.title/)).toBeInTheDocument();
+
+// Test component props
+render(<MyComponent title="test" onAction={mockFn} />);
+expect(mockFn).toHaveBeenCalledWith(expectedValue);
+
+// Test accessibility
+expect(screen.getByRole('button')).toHaveAttribute('aria-label');
 ```
 
-### 3. Form Validation
-```typescript
-// Zod schema validation
-const participantSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-})
+## Performance Considerations
 
-// React Hook Form integration
-const form = useForm<ParticipantFormData>({
-  resolver: zodResolver(participantSchema)
-})
-```
+### **Bundle Optimization**
+- Components are lazy-loaded where appropriate
+- Dynamic imports for heavy components
+- Tree-shaking enabled for unused exports
+- Image optimization with Next.js Image component
 
-This component hierarchy provides a scalable, maintainable architecture that aligns with the MVP requirements while setting up for future enhancements.
+### **Rendering Performance**
+- Avoid unnecessary re-renders with React.memo
+- Use useCallback and useMemo appropriately
+- Optimize large lists with virtualization
+- Debounce user input for search/filter components
+
+---

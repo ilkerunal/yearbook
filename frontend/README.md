@@ -1,138 +1,179 @@
+# Digital Yearbook Platform - Frontend
 
+A modern, multilingual web application for creating and managing digital yearbooks with collaborative editing capabilities.
 
-## **1. Technology Stack**
-
-This project is built using modern and robust technologies to ensure a fast, scalable, and maintainable application.
-
-  * **Framework:** [Next.js](https://nextjs.org/)
-  * **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
-  * **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-  * **Form Management:** [React Hook Form](https://react-hook-form.com/)
-  * **Data Validation:** [Zod](https://zod.dev/)
-  * **Data Fetching:** [React Query (TanStack Query)](https://tanstack.com/query/latest)
-  * **Content Editor:** [Editor.js](https://editorjs.io/)
-  * **Language:** [TypeScript](https://www.typescriptlang.org/)
-
------
-
-## **2. Core Features**
+## 🌟 Features
 
 ### **Coordinator Dashboard**
-
-  * **Group Management:** The coordinator can view a list of all participants in their group.
-  * **State-Based Workflow:** A clear visual representation of each participant's page status (`Not Started`, `In Progress`, `Submitted for Review`, `Changes Requested`, `Ready for Approval`).
-  * **Page Review:** The coordinator can review a submitted page and either approve it or request changes with comments.
-  * **Cover Editor:** A group-specific interface for designing each yearbook's cover with live preview, text customization, and templates.
-  * **Settings Management:** Modular settings with personal information, security, and notification preferences.
-  * **PDF Generation:** A button to trigger the final PDF compilation and download the file once all pages are approved.
+- **Multi-language Support**: Full Turkish (default) and English localization
+- **Group Management**: Create and manage multiple yearbook groups
+- **State-Based Workflow**: Track participant progress with clear visual indicators
+- **Page Review System**: Approve submissions or request changes with feedback
+- **Cover Editor**: Group-specific cover design with live preview and templates
+- **Reports & Analytics**: Comprehensive progress tracking and statistics
+- **Settings Management**: Modular personal, security, and notification preferences
 
 ### **Participant Editor**
+- **Personalized Access**: Unique token-based access to individual yearbook pages
+- **WYSIWYG Editor**: Block-based content editor powered by Editor.js
+- **Progress Tracking**: Save drafts and submit for coordinator review
+- **Multilingual Interface**: Turkish and English language support
 
-  * **Personalized Page:** Participants access a unique, private page to create their yearbook entry.
-  * **WYSIWYG Editor:** A block-based editor powered by **Editor.js** that allows participants to add and arrange text and images.
-  * **Content Management:** Participants can save their progress and submit their page for review.
-  * **Read-Only View:** The page becomes read-only after submission until the coordinator requests changes.
+### **Internationalization (i18n)**
+- **Primary Language**: Turkish (tr) as default
+- **Secondary Language**: English (en)
+- **Seamless Language Switching**: No page reload required
+- **Route-based Locales**: `/tr/coordinator` and `/en/coordinator`
+- **SEO-friendly**: Proper hreflang and locale-specific URLs
 
------
+## 🚀 Technology Stack
 
-## **3. Getting Started**
+- **Framework**: [Next.js 14](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for full type safety
+- **Internationalization**: [next-intl](https://next-intl-docs.vercel.app/) for modern i18n
+- **UI Components**: [Shadcn/ui](https://ui.shadcn.com/) with [Radix UI](https://www.radix-ui.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
+- **Form Management**: [React Hook Form](https://react-hook-form.com/) with [Zod](https://zod.dev/) validation
+- **Data Fetching**: [TanStack Query](https://tanstack.com/query/latest) for server state management
+- **Content Editor**: [Editor.js](https://editorjs.io/) for rich text editing
+- **Icons**: [Lucide React](https://lucide.dev/) for consistent iconography
 
-### **Prerequisites**
-
-  * [Node.js](https://nodejs.org/) (version 18 or higher)
-  * [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-
-### **Installation**
-
-1.  Navigate to the `frontend` directory:
-    ```bash
-    cd frontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-
-### **Running the Development Server**
-
-1.  Start the development server:
-    ```bash
-    npm run dev
-    ```
-2.  Open your browser and visit: `http://localhost:3000`
-
------
-
-## **4. Project Structure**
+## 📁 Project Structure
 
 ```
 /frontend
-|-- /app                          # Next.js App Router pages
-|   |-- /coordinator              # Coordinator dashboard routes
-|   |   |-- /groups               # Group management
-|   |   |   |-- /[groupId]        # Dynamic group routes
-|   |   |   |   |-- /cover-editor # Group-specific cover editor
-|   |   |   |   |-- /settings     # Group settings
-|   |   |   |   |-- page.tsx      # Group details
-|   |   |   |-- /new              # Create new group
-|   |   |   |-- page.tsx          # Groups listing
-|   |   |-- /reports              # Reports and analytics
-|   |   |-- /settings             # Coordinator settings
-|   |   |-- page.tsx              # Dashboard
-|   |-- /participant              # Participant editor routes
-|   |   |-- /[token]              # Dynamic participant routes
-|   |   |-- page.tsx              # Participant landing
-|   |-- layout.tsx               # Root layout
-|   |-- page.tsx                 # Homepage
-|-- /components                   # Reusable React components
-|   |-- index.ts                 # Barrel exports for single-line imports
-|   |-- /ui                      # Shadcn UI components
-|   |-- /layout                  # Layout-specific components
-|   |-- /forms                   # Form components with validation
-|   |   |-- create-group-form.tsx
-|   |   |-- personal-info-form.tsx
-|   |   |-- security-settings-form.tsx
-|   |   |-- notification-settings-form.tsx
-|   |-- /editor                  # Editor.js related components
-|   |-- /shared                  # Shared business components
-|   |-- providers.tsx            # React Query provider
-|-- /lib                         # Utilities and configuration
-|   |-- /hooks                   # TanStack Query custom hooks
-|   |-- /services                # API service classes
-|   |-- /validations             # Zod validation schemas
-|   |-- utils.ts                 # Utility functions
-|   |-- queryClient.ts           # React Query client setup
-|-- /types                       # TypeScript type definitions
-|-- /mock                        # Mock data and API for development
-|   |-- /data                    # Mock data files
-|   |-- /api                     # Mock API implementations
-|-- /docs                        # Project documentation
-|   |-- development-guidelines.md
-|   |-- tech-stack.md
-|   |-- recent-changes-december-2024.md
-|-- next.config.mjs
-|-- tsconfig.json
-|-- package.json
-|-- README.md
+├── /app/[locale]                     # Internationalized App Router
+│   ├── /coordinator                  # Coordinator dashboard routes
+│   │   ├── /groups                   # Group management
+│   │   │   ├── /[groupId]           # Dynamic group routes
+│   │   │   │   ├── /cover-editor    # Group-specific cover editor
+│   │   │   │   ├── /settings        # Group settings
+│   │   │   │   └── page.tsx         # Group details
+│   │   │   ├── /new                 # Create new group
+│   │   │   └── page.tsx             # Groups listing
+│   │   ├── /reports                 # Reports and analytics
+│   │   ├── /settings                # Coordinator settings
+│   │   └── page.tsx                 # Dashboard
+│   ├── /participant                 # Participant editor routes
+│   │   ├── /[token]                 # Token-based participant access
+│   │   └── page.tsx                 # Participant landing
+│   ├── layout.tsx                   # Locale-aware layout
+│   └── page.tsx                     # Localized homepage
+├── /components                      # Reusable React components
+│   ├── /ui                         # Shadcn UI components
+│   ├── /layout                     # Layout-specific components
+│   ├── /forms                      # Form components with validation
+│   └── /shared                     # Shared business components
+├── /lib                            # Utilities and configuration
+│   ├── /hooks                      # TanStack Query custom hooks
+│   ├── /services                   # API service classes
+│   ├── /validations                # Zod validation schemas
+│   └── /i18n                       # Internationalization config
+├── /translations                   # Translation files
+│   ├── tr.json                     # Turkish translations
+│   └── en.json                     # English translations
+├── /types                          # TypeScript type definitions
+├── /mock                           # Mock data and API for development
+└── /docs                           # Project documentation
 ```
 
-## **5. Recent Updates (December 2024)**
+## 🛠️ Getting Started
 
-### **Cover Editor Improvements**
-- Moved from global navigation to group-specific context
-- Added cover editor buttons on group cards and detail pages
-- Enhanced with live preview, text positioning, and template system
+### Prerequisites
+- **Node.js** 18.0.0 or higher
+- **npm** 9.0.0 or higher
 
-### **Settings Modernization**
-- Split monolithic settings into modular form components
-- Added comprehensive validation with Zod schemas
-- Improved user experience with better layout and organization
+### Installation
 
-### **Architecture Enhancements**
-- Resolved circular dependency issues
-- Established clear import patterns
-- Updated documentation and development guidelines
+1. **Clone and navigate to the frontend directory:**
+   ```bash
+   cd frontend
+   ```
 
-For detailed information about recent changes, see `/docs/recent-changes-december-2024.md`
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This structured `README.md` clearly defines the project's purpose, technology stack, features, and how to get started. It serves as an excellent starting point for any developer joining the project.
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   - Turkish (default): `http://localhost:3000/tr`
+   - English: `http://localhost:3000/en`
+   - Auto-redirect: `http://localhost:3000`
+
+### Available Scripts
+
+```bash
+npm run dev         # Start development server
+npm run build       # Build for production
+npm run start       # Start production server
+npm run lint        # Run ESLint
+npm run type-check  # TypeScript type checking
+```
+
+## 🌍 Internationalization
+
+The application supports full internationalization with:
+
+- **Turkish (tr)** - Primary language and default
+- **English (en)** - Secondary language
+- **Language Selector** - Available in the top-right header
+- **Route-based Locales** - All routes include locale prefix
+- **SEO Optimization** - Proper hreflang tags and meta data
+
+### Adding Translations
+
+1. Add new keys to both `/translations/tr.json` and `/translations/en.json`
+2. Use the `useTranslations` hook in components:
+   ```typescript
+   import { useTranslations } from 'next-intl';
+   
+   function MyComponent() {
+     const t = useTranslations('namespace');
+     return <h1>{t('title')}</h1>;
+   }
+   ```
+
+## 📚 Documentation
+
+- **[Development Guidelines](./docs/development-guidelines.md)** - Coding standards and patterns
+- **[Technology Stack](./docs/tech-stack.md)** - Detailed technology overview
+- **[Component Hierarchy](./docs/component-hierarchy.md)** - Component organization
+- **[Internationalization Status](./docs/internationalization-status.md)** - i18n implementation details
+
+## 🔄 Recent Updates
+
+### **Internationalization Implementation** (January 2025)
+- ✅ Complete Turkish and English localization
+- ✅ All pages and components migrated to use translations
+- ✅ Language selector in header
+- ✅ Locale-based routing with `/tr` and `/en` prefixes
+- ✅ SEO-friendly URL structure
+
+### **Cover Editor Enhancement** (December 2024)
+- ✅ Moved from global navigation to group-specific context
+- ✅ Live preview with text positioning and templates
+- ✅ Background image management
+
+### **Settings Modernization** (December 2024)
+- ✅ Modular form components with validation
+- ✅ Personal info, security, and notification settings
+- ✅ Improved user experience and organization
+
+## 🤝 Development
+
+This project follows modern React and Next.js best practices:
+
+- **Type Safety**: Full TypeScript coverage with strict mode
+- **Component Composition**: Reusable, single-responsibility components
+- **State Management**: TanStack Query for server state, React hooks for local state
+- **Code Quality**: ESLint, Prettier, and consistent code standards
+- **Performance**: Automatic code splitting and optimization
+
+## 📄 License
+
+This project is private and proprietary.

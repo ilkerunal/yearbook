@@ -9,8 +9,9 @@ The Digital Yearbook Platform frontend is built using modern web technologies fo
 ### **Next.js 14.2.32**
 - **App Router**: Modern routing with nested layouts and server components
 - **TypeScript**: Full type safety throughout the application
-- **File-based routing**: Intuitive route organization
+- **File-based routing**: Intuitive route organization with locale support
 - **Build optimization**: Automatic code splitting and optimization
+- **Internationalization**: Built-in i18n support with route-based locales
 
 ## UI & Styling
 
@@ -44,6 +45,16 @@ The Digital Yearbook Platform frontend is built using modern web technologies fo
 - **Validation integration**: Works seamlessly with Zod schemas
 - **Developer experience**: Simple API with excellent TypeScript support
 - **Performance**: Uncontrolled components for optimal performance
+
+## Internationalization
+
+### **next-intl**
+- **Modern i18n**: Built for Next.js App Router with full SSR support
+- **Type safety**: TypeScript integration for translation keys
+- **Rich formatting**: Support for pluralization, numbers, dates, and variables
+- **Namespace organization**: Structured translation files with nested keys
+- **Locale routing**: Automatic URL handling for `/tr` and `/en` routes
+- **SEO optimization**: Proper hreflang tags and locale-specific meta data
 
 ## Validation & Type Safety
 
@@ -83,9 +94,10 @@ The Digital Yearbook Platform frontend is built using modern web technologies fo
 ### **Modular Architecture**
 ```
 /frontend
-├── /app              # Next.js App Router pages
+├── /app/[locale]     # Internationalized Next.js App Router
 ├── /components       # Reusable UI components
-├── /lib             # Utilities, hooks, services
+├── /lib             # Utilities, hooks, services, i18n config
+├── /translations    # Translation files (tr.json, en.json)
 ├── /types           # TypeScript type definitions  
 ├── /mock            # Mock data for development
 └── /docs            # Project documentation
@@ -147,11 +159,13 @@ The Digital Yearbook Platform frontend is built using modern web technologies fo
 ```json
 {
   "next": "14.2.32",
-  "@tanstack/react-query": "^5.0.0", 
-  "react-hook-form": "^7.0.0",
-  "zod": "^3.0.0",
-  "tailwindcss": "^3.0.0",
-  "typescript": "^5.0.0"
+  "next-intl": "^4.3.7",
+  "@tanstack/react-query": "^5.51.23", 
+  "react-hook-form": "^7.52.2",
+  "zod": "^3.23.8",
+  "tailwindcss": "^3.4.7",
+  "typescript": "^5.5.4",
+  "@editorjs/editorjs": "^2.30.6"
 }
 ```
 
@@ -204,5 +218,21 @@ The Digital Yearbook Platform frontend is built using modern web technologies fo
 
 ---
 
-*Last updated: December 2024*
+## Recent Additions (January 2025)
+
+### **Internationalization Stack**
+- **next-intl**: Modern i18n library with App Router support
+- **Route-based locales**: `/tr` (Turkish) and `/en` (English) prefixes
+- **Translation management**: Structured JSON files with namespace organization
+- **Type safety**: Full TypeScript support for translation keys
+- **SEO optimization**: Automatic hreflang and meta tag generation
+
+### **Enhanced Validation**
+- **Form validation**: Extended Zod schemas for multilingual forms
+- **Error handling**: Localized error messages and validation feedback
+- **Input sanitization**: Enhanced security with locale-aware validation
+
+---
+
+*Last updated: January 2025*
 *For the most current dependency versions, refer to package.json*
